@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="find_friend.mapper.NeedMapper">
+  <resultMap id="BaseResultMap" type="find_friend.po.Need">
+    <id column="needID" jdbcType="VARCHAR" property="needid" />
+    <result column="createUserID" jdbcType="VARCHAR" property="createuserid" />
+    <result column="maxCount" jdbcType="SMALLINT" property="maxcount" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="ddl" jdbcType="TIMESTAMP" property="ddl" />
+    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="first_tag" jdbcType="VARCHAR" property="firstTag" />
+    <result column="second_tag" jdbcType="VARCHAR" property="secondTag" />
+    <result column="submitted" jdbcType="TINYINT" property="submitted" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    needID, createUserID, maxCount, createTime, ddl, describe, first_tag, second_tag, 
+    submitted
+  </sql>
+  <select id="selectByExample" parameterType="find_friend.po.NeedExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from need
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from need
+    where needID = #{needid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from need
+    where needID = #{needid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="find_friend.po.NeedExample">
+    delete from need
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="find_friend.po.Need">
+    insert into need (needID, createUserID, maxCount, 
+      createTime, ddl, describe, 
+      first_tag, second_tag, submitted
+      )
+    values (#{needid,jdbcType=VARCHAR}, #{createuserid,jdbcType=VARCHAR}, #{maxcount,jdbcType=SMALLINT}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{ddl,jdbcType=TIMESTAMP}, #{describe,jdbcType=VARCHAR}, 
+      #{firstTag,jdbcType=VARCHAR}, #{secondTag,jdbcType=VARCHAR}, #{submitted,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="find_friend.po.Need">
+    insert into need
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="needid != null">
+        needID,
+      </if>
+      <if test="createuserid != null">
+        createUserID,
+      </if>
+      <if test="maxcount != null">
+        maxCount,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="ddl != null">
+        ddl,
+      </if>
+      <if test="describe != null">
+        describe,
+      </if>
+      <if test="firstTag != null">
+        first_tag,
+      </if>
+      <if test="secondTag != null">
+        second_tag,
+      </if>
+      <if test="submitted != null">
+        submitted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="needid != null">
+        #{needid,jdbcType=VARCHAR},
+      </if>
+      <if test="createuserid != null">
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="maxcount != null">
+        #{maxcount,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ddl != null">
+        #{ddl,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTag != null">
+        #{firstTag,jdbcType=VARCHAR},
+      </if>
+      <if test="secondTag != null">
+        #{secondTag,jdbcType=VARCHAR},
+      </if>
+      <if test="submitted != null">
+        #{submitted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="find_friend.po.NeedExample" resultType="java.lang.Long">
+    select count(*) from need
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update need
+    <set>
+      <if test="record.needid != null">
+        needID = #{record.needid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuserid != null">
+        createUserID = #{record.createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxcount != null">
+        maxCount = #{record.maxcount,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ddl != null">
+        ddl = #{record.ddl,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.describe != null">
+        describe = #{record.describe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstTag != null">
+        first_tag = #{record.firstTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondTag != null">
+        second_tag = #{record.secondTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.submitted != null">
+        submitted = #{record.submitted,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update need
+    set needID = #{record.needid,jdbcType=VARCHAR},
+      createUserID = #{record.createuserid,jdbcType=VARCHAR},
+      maxCount = #{record.maxcount,jdbcType=SMALLINT},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      ddl = #{record.ddl,jdbcType=TIMESTAMP},
+      describe = #{record.describe,jdbcType=VARCHAR},
+      first_tag = #{record.firstTag,jdbcType=VARCHAR},
+      second_tag = #{record.secondTag,jdbcType=VARCHAR},
+      submitted = #{record.submitted,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.Need">
+    update need
+    <set>
+      <if test="createuserid != null">
+        createUserID = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="maxcount != null">
+        maxCount = #{maxcount,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ddl != null">
+        ddl = #{ddl,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describe != null">
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTag != null">
+        first_tag = #{firstTag,jdbcType=VARCHAR},
+      </if>
+      <if test="secondTag != null">
+        second_tag = #{secondTag,jdbcType=VARCHAR},
+      </if>
+      <if test="submitted != null">
+        submitted = #{submitted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where needID = #{needid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="find_friend.po.Need">
+    update need
+    set createUserID = #{createuserid,jdbcType=VARCHAR},
+      maxCount = #{maxcount,jdbcType=SMALLINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      ddl = #{ddl,jdbcType=TIMESTAMP},
+      describe = #{describe,jdbcType=VARCHAR},
+      first_tag = #{firstTag,jdbcType=VARCHAR},
+      second_tag = #{secondTag,jdbcType=VARCHAR},
+      submitted = #{submitted,jdbcType=TINYINT}
+    where needID = #{needid,jdbcType=VARCHAR}
+  </update>
+</mapper>

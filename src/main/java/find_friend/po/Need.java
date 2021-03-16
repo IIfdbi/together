@@ -1,0 +1,101 @@
+package find_friend.po;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * @author 
+ */
+public class Need implements Serializable {
+    private String needid;
+
+    private String createuserid;
+
+    private Short maxcount;
+
+    private Date createtime;
+
+    private Date ddl;
+
+    private String describe;
+
+    private String firstTag;
+
+    private String secondTag;
+
+    private Byte submitted;
+
+    private static final long serialVersionUID = 1L;
+
+    public String getNeedid() {
+        return needid;
+    }
+
+    public void setNeedid(String needid) {
+        this.needid = needid;
+    }
+
+    public String getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(String createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Short getMaxcount() {
+        return maxcount;
+    }
+
+    public void setMaxcount(Short maxcount) {
+        this.maxcount = maxcount;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Date getDdl() {
+        return ddl;
+    }
+
+    public void setDdl(Date ddl) {
+        this.ddl = ddl;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
+    public String getFirstTag() {
+        return firstTag;
+    }
+
+    public void setFirstTag(String firstTag) {
+        this.firstTag = firstTag;
+    }
+
+    public String getSecondTag() {
+        return secondTag;
+    }
+
+    public void setSecondTag(String secondTag) {
+        this.secondTag = secondTag;
+    }
+
+    public Byte getSubmitted() {
+        return submitted;
+    }
+
+    public void setSubmitted(Byte submitted) {
+        this.submitted = submitted;
+    }
+}
