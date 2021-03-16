@@ -1,5 +1,7 @@
 package find_friend.po;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,8 +11,22 @@ import java.util.Date;
 public class User implements Serializable {
     private String userid;
 
+    //用于表明验证类型的一组空接口
+    public interface CREATE {
+    }
+    public interface UPDATE {
+    }
+    public interface LOGIN {
+    }
+    public interface RESET_PASSWORD {
+    }
+
+    @NotBlank(message = "用户名称不能为空", groups = {CREATE.class, LOGIN.class,RESET_PASSWORD.class})
+    @Size(min = 3, max = 32, message = "名字长度必须在3和32之间", groups = {CREATE.class, LOGIN.class,RESET_PASSWORD.class})
     private String username;
 
+    @NotBlank(message = "密码不能为空", groups = {CREATE.class, LOGIN.class, RESET_PASSWORD.class})
+    @Size(min = 6, max = 16, message = "密码长度必须在6和16之间", groups = {CREATE.class, LOGIN.class, RESET_PASSWORD.class})
     private String pwd;
 
     private String school;
