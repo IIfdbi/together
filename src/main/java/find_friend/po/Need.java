@@ -1,12 +1,18 @@
 package find_friend.po;
 
+import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author 
  */
+@Entity
+@Table(name = "Need")
 public class Need implements Serializable {
+    @Id
     private String needid;
 
     private String createuserid;
