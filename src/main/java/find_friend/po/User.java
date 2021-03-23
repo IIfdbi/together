@@ -1,5 +1,8 @@
 package find_friend.po;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -9,6 +12,7 @@ import java.util.Date;
  * @author 
  */
 public class User implements Serializable {
+
     private String userid;
 
     //用于表明验证类型的一组空接口
