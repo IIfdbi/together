@@ -9,7 +9,7 @@
     <result column="available" jdbcType="TINYINT" property="available" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="ddl" jdbcType="TIMESTAMP" property="ddl" />
-    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
     <result column="done" jdbcType="TINYINT" property="done" />
     <result column="needID" jdbcType="VARCHAR" property="needid" />
     <result column="tableName" jdbcType="VARCHAR" property="tablename" />
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    tableID, photo, max_number, now_number, available, createTime, ddl, describe, done, 
+    tableID, photo, max_number, now_number, available, createTime, ddl, detail, done,
     needID, tableName
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.TableExample" resultMap="BaseResultMap">
@@ -117,11 +117,11 @@
   <insert id="insert" parameterType="find_friend.po.Table">
     insert into table (tableID, photo, max_number, 
       now_number, available, createTime, 
-      ddl, describe, done, 
+      ddl, detail, done,
       needID, tableName)
     values (#{tableid,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{maxNumber,jdbcType=SMALLINT}, 
       #{nowNumber,jdbcType=SMALLINT}, #{available,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{ddl,jdbcType=TIMESTAMP}, #{describe,jdbcType=VARCHAR}, #{done,jdbcType=TINYINT}, 
+      #{ddl,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR}, #{done,jdbcType=TINYINT},
       #{needid,jdbcType=VARCHAR}, #{tablename,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.Table">
@@ -148,8 +148,8 @@
       <if test="ddl != null">
         ddl,
       </if>
-      <if test="describe != null">
-        describe,
+      <if test="detail != null">
+        detail,
       </if>
       <if test="done != null">
         done,
@@ -183,8 +183,8 @@
       <if test="ddl != null">
         #{ddl,jdbcType=TIMESTAMP},
       </if>
-      <if test="describe != null">
-        #{describe,jdbcType=VARCHAR},
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
       </if>
       <if test="done != null">
         #{done,jdbcType=TINYINT},
@@ -227,8 +227,8 @@
       <if test="record.ddl != null">
         ddl = #{record.ddl,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.describe != null">
-        describe = #{record.describe,jdbcType=VARCHAR},
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=VARCHAR},
       </if>
       <if test="record.done != null">
         done = #{record.done,jdbcType=TINYINT},
@@ -253,7 +253,7 @@
       available = #{record.available,jdbcType=TINYINT},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       ddl = #{record.ddl,jdbcType=TIMESTAMP},
-      describe = #{record.describe,jdbcType=VARCHAR},
+      detail = #{record.detail,jdbcType=VARCHAR},
       done = #{record.done,jdbcType=TINYINT},
       needID = #{record.needid,jdbcType=VARCHAR},
       tableName = #{record.tablename,jdbcType=VARCHAR}
@@ -282,8 +282,8 @@
       <if test="ddl != null">
         ddl = #{ddl,jdbcType=TIMESTAMP},
       </if>
-      <if test="describe != null">
-        describe = #{describe,jdbcType=VARCHAR},
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
       </if>
       <if test="done != null">
         done = #{done,jdbcType=TINYINT},
@@ -305,7 +305,7 @@
       available = #{available,jdbcType=TINYINT},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       ddl = #{ddl,jdbcType=TIMESTAMP},
-      describe = #{describe,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
       done = #{done,jdbcType=TINYINT},
       needID = #{needid,jdbcType=VARCHAR},
       tableName = #{tablename,jdbcType=VARCHAR}

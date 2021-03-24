@@ -7,7 +7,7 @@
     <result column="maxCount" jdbcType="SMALLINT" property="maxcount" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="ddl" jdbcType="TIMESTAMP" property="ddl" />
-    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
     <result column="first_tag" jdbcType="VARCHAR" property="firstTag" />
     <result column="second_tag" jdbcType="VARCHAR" property="secondTag" />
     <result column="submitted" jdbcType="TINYINT" property="submitted" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    needID, createUserID, maxCount, createTime, ddl, describe, first_tag, second_tag, 
+    needID, createUserID, maxCount, createTime, ddl, detail, first_tag, second_tag,
     submitted
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.NeedExample" resultMap="BaseResultMap">
@@ -114,11 +114,11 @@
   </delete>
   <insert id="insert" parameterType="find_friend.po.Need">
     insert into need (needID, createUserID, maxCount, 
-      createTime, ddl, describe, 
+      createTime, ddl, detail,
       first_tag, second_tag, submitted
       )
     values (#{needid,jdbcType=VARCHAR}, #{createuserid,jdbcType=VARCHAR}, #{maxcount,jdbcType=SMALLINT}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{ddl,jdbcType=TIMESTAMP}, #{describe,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{ddl,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR},
       #{firstTag,jdbcType=VARCHAR}, #{secondTag,jdbcType=VARCHAR}, #{submitted,jdbcType=TINYINT}
       )
   </insert>
@@ -140,8 +140,8 @@
       <if test="ddl != null">
         ddl,
       </if>
-      <if test="describe != null">
-        describe,
+      <if test="detail != null">
+        detail,
       </if>
       <if test="firstTag != null">
         first_tag,
@@ -169,8 +169,8 @@
       <if test="ddl != null">
         #{ddl,jdbcType=TIMESTAMP},
       </if>
-      <if test="describe != null">
-        #{describe,jdbcType=VARCHAR},
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
       </if>
       <if test="firstTag != null">
         #{firstTag,jdbcType=VARCHAR},
@@ -207,8 +207,8 @@
       <if test="record.ddl != null">
         ddl = #{record.ddl,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.describe != null">
-        describe = #{record.describe,jdbcType=VARCHAR},
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=VARCHAR},
       </if>
       <if test="record.firstTag != null">
         first_tag = #{record.firstTag,jdbcType=VARCHAR},
@@ -231,7 +231,7 @@
       maxCount = #{record.maxcount,jdbcType=SMALLINT},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       ddl = #{record.ddl,jdbcType=TIMESTAMP},
-      describe = #{record.describe,jdbcType=VARCHAR},
+      detail = #{record.detail,jdbcType=VARCHAR},
       first_tag = #{record.firstTag,jdbcType=VARCHAR},
       second_tag = #{record.secondTag,jdbcType=VARCHAR},
       submitted = #{record.submitted,jdbcType=TINYINT}
@@ -254,8 +254,8 @@
       <if test="ddl != null">
         ddl = #{ddl,jdbcType=TIMESTAMP},
       </if>
-      <if test="describe != null">
-        describe = #{describe,jdbcType=VARCHAR},
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
       </if>
       <if test="firstTag != null">
         first_tag = #{firstTag,jdbcType=VARCHAR},
@@ -275,7 +275,7 @@
       maxCount = #{maxcount,jdbcType=SMALLINT},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       ddl = #{ddl,jdbcType=TIMESTAMP},
-      describe = #{describe,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
       first_tag = #{firstTag,jdbcType=VARCHAR},
       second_tag = #{secondTag,jdbcType=VARCHAR},
       submitted = #{submitted,jdbcType=TINYINT}

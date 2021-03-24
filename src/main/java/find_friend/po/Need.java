@@ -23,7 +23,7 @@ public class Need implements Serializable {
 
     private Date ddl;
 
-    private String describe;
+    private String detail;
 
     private String firstTag;
 
@@ -73,12 +73,12 @@ public class Need implements Serializable {
         this.ddl = ddl;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getdetail() {
+        return detail;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setdetail(String detail) {
+        this.detail = detail;
     }
 
     public String getFirstTag() {
