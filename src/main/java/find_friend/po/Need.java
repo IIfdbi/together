@@ -7,19 +7,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author 
+ * @author
  */
 @Entity
 @Table(name = "Need")
-public class Need implements Serializable {
+public class Need extends NeedKey implements Serializable {
     @Id
     private String needid;
 
     private String createuserid;
 
     private Short maxcount;
-
-    private Date createtime;
 
     private Date ddl;
 
@@ -31,15 +29,9 @@ public class Need implements Serializable {
 
     private Byte submitted;
 
+    private String school;
+
     private static final long serialVersionUID = 1L;
-
-    public String getNeedid() {
-        return needid;
-    }
-
-    public void setNeedid(String needid) {
-        this.needid = needid;
-    }
 
     public String getCreateuserid() {
         return createuserid;
@@ -57,14 +49,6 @@ public class Need implements Serializable {
         this.maxcount = maxcount;
     }
 
-    public Date getCreatetime() {
-        return createtime;
-    }
-
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
-
     public Date getDdl() {
         return ddl;
     }
@@ -73,11 +57,11 @@ public class Need implements Serializable {
         this.ddl = ddl;
     }
 
-    public String getdetail() {
+    public String getDetail() {
         return detail;
     }
 
-    public void setdetail(String detail) {
+    public void setDetail(String detail) {
         this.detail = detail;
     }
 
@@ -103,5 +87,13 @@ public class Need implements Serializable {
 
     public void setSubmitted(Byte submitted) {
         this.submitted = submitted;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 }

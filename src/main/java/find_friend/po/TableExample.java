@@ -565,72 +565,72 @@ public class TableExample {
             return (Criteria) this;
         }
 
-        public Criteria anddetailIsNull() {
+        public Criteria andDetailIsNull() {
             addCriterion("detail is null");
             return (Criteria) this;
         }
 
-        public Criteria anddetailIsNotNull() {
+        public Criteria andDetailIsNotNull() {
             addCriterion("detail is not null");
             return (Criteria) this;
         }
 
-        public Criteria anddetailEqualTo(String value) {
+        public Criteria andDetailEqualTo(String value) {
             addCriterion("detail =", value, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailNotEqualTo(String value) {
+        public Criteria andDetailNotEqualTo(String value) {
             addCriterion("detail <>", value, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailGreaterThan(String value) {
+        public Criteria andDetailGreaterThan(String value) {
             addCriterion("detail >", value, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailGreaterThanOrEqualTo(String value) {
+        public Criteria andDetailGreaterThanOrEqualTo(String value) {
             addCriterion("detail >=", value, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailLessThan(String value) {
+        public Criteria andDetailLessThan(String value) {
             addCriterion("detail <", value, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailLessThanOrEqualTo(String value) {
+        public Criteria andDetailLessThanOrEqualTo(String value) {
             addCriterion("detail <=", value, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailLike(String value) {
+        public Criteria andDetailLike(String value) {
             addCriterion("detail like", value, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailNotLike(String value) {
+        public Criteria andDetailNotLike(String value) {
             addCriterion("detail not like", value, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailIn(List<String> values) {
+        public Criteria andDetailIn(List<String> values) {
             addCriterion("detail in", values, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailNotIn(List<String> values) {
+        public Criteria andDetailNotIn(List<String> values) {
             addCriterion("detail not in", values, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailBetween(String value1, String value2) {
+        public Criteria andDetailBetween(String value1, String value2) {
             addCriterion("detail between", value1, value2, "detail");
             return (Criteria) this;
         }
 
-        public Criteria anddetailNotBetween(String value1, String value2) {
+        public Criteria andDetailNotBetween(String value1, String value2) {
             addCriterion("detail not between", value1, value2, "detail");
             return (Criteria) this;
         }
@@ -832,6 +832,76 @@ public class TableExample {
 
         public Criteria andTablenameNotBetween(String value1, String value2) {
             addCriterion("tableName not between", value1, value2, "tablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolIsNull() {
+            addCriterion("school is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolIsNotNull() {
+            addCriterion("school is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolEqualTo(String value) {
+            addCriterion("school =", value, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolNotEqualTo(String value) {
+            addCriterion("school <>", value, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolGreaterThan(String value) {
+            addCriterion("school >", value, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolGreaterThanOrEqualTo(String value) {
+            addCriterion("school >=", value, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolLessThan(String value) {
+            addCriterion("school <", value, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolLessThanOrEqualTo(String value) {
+            addCriterion("school <=", value, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolLike(String value) {
+            addCriterion("school like", value, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolNotLike(String value) {
+            addCriterion("school not like", value, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolIn(List<String> values) {
+            addCriterion("school in", values, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolNotIn(List<String> values) {
+            addCriterion("school not in", values, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolBetween(String value1, String value2) {
+            addCriterion("school between", value1, value2, "school");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchoolNotBetween(String value1, String value2) {
+            addCriterion("school not between", value1, value2, "school");
             return (Criteria) this;
         }
     }

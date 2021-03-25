@@ -3,14 +3,15 @@
 <mapper namespace="find_friend.mapper.NeedMapper">
   <resultMap id="BaseResultMap" type="find_friend.po.Need">
     <id column="needID" jdbcType="VARCHAR" property="needid" />
+    <id column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="createUserID" jdbcType="VARCHAR" property="createuserid" />
     <result column="maxCount" jdbcType="SMALLINT" property="maxcount" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="ddl" jdbcType="TIMESTAMP" property="ddl" />
     <result column="detail" jdbcType="VARCHAR" property="detail" />
     <result column="first_tag" jdbcType="VARCHAR" property="firstTag" />
     <result column="second_tag" jdbcType="VARCHAR" property="secondTag" />
     <result column="submitted" jdbcType="TINYINT" property="submitted" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    needID, createUserID, maxCount, createTime, ddl, detail, first_tag, second_tag,
-    submitted
+    needID, createTime, createUserID, maxCount, ddl, detail, first_tag, second_tag, submitted, 
+    school
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.NeedExample" resultMap="BaseResultMap">
     select
@@ -96,15 +97,17 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="find_friend.po.NeedKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from need
     where needID = #{needid,jdbcType=VARCHAR}
+      and createTime = #{createtime,jdbcType=TIMESTAMP}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="find_friend.po.NeedKey">
     delete from need
     where needID = #{needid,jdbcType=VARCHAR}
+      and createTime = #{createtime,jdbcType=TIMESTAMP}
   </delete>
   <delete id="deleteByExample" parameterType="find_friend.po.NeedExample">
     delete from need
@@ -113,14 +116,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="find_friend.po.Need">
-    insert into need (needID, createUserID, maxCount, 
-      createTime, ddl, detail,
-      first_tag, second_tag, submitted
-      )
-    values (#{needid,jdbcType=VARCHAR}, #{createuserid,jdbcType=VARCHAR}, #{maxcount,jdbcType=SMALLINT}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{ddl,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR},
-      #{firstTag,jdbcType=VARCHAR}, #{secondTag,jdbcType=VARCHAR}, #{submitted,jdbcType=TINYINT}
-      )
+    insert into need (needID, createTime, createUserID, 
+      maxCount, ddl, detail, 
+      first_tag, second_tag, submitted, 
+      school)
+    values (#{needid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{createuserid,jdbcType=VARCHAR}, 
+      #{maxcount,jdbcType=SMALLINT}, #{ddl,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR}, 
+      #{firstTag,jdbcType=VARCHAR}, #{secondTag,jdbcType=VARCHAR}, #{submitted,jdbcType=TINYINT}, 
+      #{school,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.Need">
     insert into need
@@ -128,14 +131,14 @@
       <if test="needid != null">
         needID,
       </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
       <if test="createuserid != null">
         createUserID,
       </if>
       <if test="maxcount != null">
         maxCount,
-      </if>
-      <if test="createtime != null">
-        createTime,
       </if>
       <if test="ddl != null">
         ddl,
@@ -152,19 +155,22 @@
       <if test="submitted != null">
         submitted,
       </if>
+      <if test="school != null">
+        school,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="needid != null">
         #{needid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="createuserid != null">
         #{createuserid,jdbcType=VARCHAR},
       </if>
       <if test="maxcount != null">
         #{maxcount,jdbcType=SMALLINT},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="ddl != null">
         #{ddl,jdbcType=TIMESTAMP},
@@ -181,6 +187,9 @@
       <if test="submitted != null">
         #{submitted,jdbcType=TINYINT},
       </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="find_friend.po.NeedExample" resultType="java.lang.Long">
@@ -195,14 +204,14 @@
       <if test="record.needid != null">
         needID = #{record.needid,jdbcType=VARCHAR},
       </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.createuserid != null">
         createUserID = #{record.createuserid,jdbcType=VARCHAR},
       </if>
       <if test="record.maxcount != null">
         maxCount = #{record.maxcount,jdbcType=SMALLINT},
-      </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.ddl != null">
         ddl = #{record.ddl,jdbcType=TIMESTAMP},
@@ -219,6 +228,9 @@
       <if test="record.submitted != null">
         submitted = #{record.submitted,jdbcType=TINYINT},
       </if>
+      <if test="record.school != null">
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -227,14 +239,15 @@
   <update id="updateByExample" parameterType="map">
     update need
     set needID = #{record.needid,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
       createUserID = #{record.createuserid,jdbcType=VARCHAR},
       maxCount = #{record.maxcount,jdbcType=SMALLINT},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
       ddl = #{record.ddl,jdbcType=TIMESTAMP},
       detail = #{record.detail,jdbcType=VARCHAR},
       first_tag = #{record.firstTag,jdbcType=VARCHAR},
       second_tag = #{record.secondTag,jdbcType=VARCHAR},
-      submitted = #{record.submitted,jdbcType=TINYINT}
+      submitted = #{record.submitted,jdbcType=TINYINT},
+      school = #{record.school,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -247,9 +260,6 @@
       </if>
       <if test="maxcount != null">
         maxCount = #{maxcount,jdbcType=SMALLINT},
-      </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="ddl != null">
         ddl = #{ddl,jdbcType=TIMESTAMP},
@@ -266,19 +276,24 @@
       <if test="submitted != null">
         submitted = #{submitted,jdbcType=TINYINT},
       </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
     </set>
     where needID = #{needid,jdbcType=VARCHAR}
+      and createTime = #{createtime,jdbcType=TIMESTAMP}
   </update>
   <update id="updateByPrimaryKey" parameterType="find_friend.po.Need">
     update need
     set createUserID = #{createuserid,jdbcType=VARCHAR},
       maxCount = #{maxcount,jdbcType=SMALLINT},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
       ddl = #{ddl,jdbcType=TIMESTAMP},
       detail = #{detail,jdbcType=VARCHAR},
       first_tag = #{firstTag,jdbcType=VARCHAR},
       second_tag = #{secondTag,jdbcType=VARCHAR},
-      submitted = #{submitted,jdbcType=TINYINT}
+      submitted = #{submitted,jdbcType=TINYINT},
+      school = #{school,jdbcType=VARCHAR}
     where needID = #{needid,jdbcType=VARCHAR}
+      and createTime = #{createtime,jdbcType=TIMESTAMP}
   </update>
 </mapper>

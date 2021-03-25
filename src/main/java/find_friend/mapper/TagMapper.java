@@ -10,13 +10,21 @@ public interface TagMapper {
 
     int deleteByExample(TagExample example);
 
+    int deleteByPrimaryKey(String tagid);
+
     int insert(Tag record);
 
     int insertSelective(Tag record);
 
     List<Tag> selectByExample(TagExample example);
 
+    Tag selectByPrimaryKey(String tagid);
+
     int updateByExampleSelective(@Param("record") Tag record, @Param("example") TagExample example);
 
     int updateByExample(@Param("record") Tag record, @Param("example") TagExample example);
+
+    int updateByPrimaryKeySelective(Tag record);
+
+    int updateByPrimaryKey(Tag record);
 }

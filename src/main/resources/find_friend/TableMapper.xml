@@ -13,6 +13,7 @@
     <result column="done" jdbcType="TINYINT" property="done" />
     <result column="needID" jdbcType="VARCHAR" property="needid" />
     <result column="tableName" jdbcType="VARCHAR" property="tablename" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    tableID, photo, max_number, now_number, available, createTime, ddl, detail, done,
-    needID, tableName
+    tableID, photo, max_number, now_number, available, createTime, ddl, detail, done, 
+    needID, tableName, school
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.TableExample" resultMap="BaseResultMap">
     select
@@ -117,12 +118,14 @@
   <insert id="insert" parameterType="find_friend.po.Table">
     insert into table (tableID, photo, max_number, 
       now_number, available, createTime, 
-      ddl, detail, done,
-      needID, tableName)
+      ddl, detail, done, 
+      needID, tableName, school
+      )
     values (#{tableid,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{maxNumber,jdbcType=SMALLINT}, 
       #{nowNumber,jdbcType=SMALLINT}, #{available,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{ddl,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR}, #{done,jdbcType=TINYINT},
-      #{needid,jdbcType=VARCHAR}, #{tablename,jdbcType=VARCHAR})
+      #{ddl,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR}, #{done,jdbcType=TINYINT}, 
+      #{needid,jdbcType=VARCHAR}, #{tablename,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.Table">
     insert into table
@@ -160,6 +163,9 @@
       <if test="tablename != null">
         tableName,
       </if>
+      <if test="school != null">
+        school,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="tableid != null">
@@ -194,6 +200,9 @@
       </if>
       <if test="tablename != null">
         #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -239,6 +248,9 @@
       <if test="record.tablename != null">
         tableName = #{record.tablename,jdbcType=VARCHAR},
       </if>
+      <if test="record.school != null">
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -256,7 +268,8 @@
       detail = #{record.detail,jdbcType=VARCHAR},
       done = #{record.done,jdbcType=TINYINT},
       needID = #{record.needid,jdbcType=VARCHAR},
-      tableName = #{record.tablename,jdbcType=VARCHAR}
+      tableName = #{record.tablename,jdbcType=VARCHAR},
+      school = #{record.school,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -294,6 +307,9 @@
       <if test="tablename != null">
         tableName = #{tablename,jdbcType=VARCHAR},
       </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
     </set>
     where tableID = #{tableid,jdbcType=VARCHAR}
   </update>
@@ -308,7 +324,8 @@
       detail = #{detail,jdbcType=VARCHAR},
       done = #{done,jdbcType=TINYINT},
       needID = #{needid,jdbcType=VARCHAR},
-      tableName = #{tablename,jdbcType=VARCHAR}
+      tableName = #{tablename,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR}
     where tableID = #{tableid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -29,6 +29,8 @@ public class Table implements Serializable {
 
     private String tablename;
 
+    private String school;
+
     private static final long serialVersionUID = 1L;
 
     public String getTableid() {
@@ -87,11 +89,11 @@ public class Table implements Serializable {
         this.ddl = ddl;
     }
 
-    public String getdetail() {
+    public String getDetail() {
         return detail;
     }
 
-    public void setdetail(String detail) {
+    public void setDetail(String detail) {
         this.detail = detail;
     }
 
@@ -117,5 +119,13 @@ public class Table implements Serializable {
 
     public void setTablename(String tablename) {
         this.tablename = tablename;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="find_friend.mapper.TagMapper">
   <resultMap id="BaseResultMap" type="find_friend.po.Tag">
-    <result column="tagID" jdbcType="VARCHAR" property="tagid" />
+    <id column="tagID" jdbcType="VARCHAR" property="tagid" />
     <result column="tagName" jdbcType="VARCHAR" property="tagname" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -88,6 +88,16 @@
       </if>
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tag
+    where tagID = #{tagid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tag
+    where tagID = #{tagid,jdbcType=VARCHAR}
+  </delete>
   <delete id="deleteByExample" parameterType="find_friend.po.TagExample">
     delete from tag
     <if test="_parameter != null">
@@ -144,5 +154,19 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.Tag">
+    update tag
+    <set>
+      <if test="tagname != null">
+        tagName = #{tagname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tagID = #{tagid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="find_friend.po.Tag">
+    update tag
+    set tagName = #{tagname,jdbcType=VARCHAR}
+    where tagID = #{tagid,jdbcType=VARCHAR}
   </update>
 </mapper>
