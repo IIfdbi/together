@@ -22,7 +22,7 @@ public class UserController extends BaseController{
     UserService userService;
 
     //注册
-    @PostMapping(value="/register")
+    @RequestMapping(value="/register")
     public ResponseEntity<Response<User>> userAdd(@Validated({User.CREATE.class}) User user,
                 BindingResult bindingResult){
             Response<User> response = new Response<>();
