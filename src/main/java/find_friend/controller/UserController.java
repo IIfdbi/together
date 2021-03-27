@@ -3,6 +3,8 @@ package find_friend.controller;
 import find_friend.po.User;
 import find_friend.service.UserService;
 import find_friend.utils.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -21,10 +23,13 @@ public class UserController extends BaseController{
     @Resource
     UserService userService;
 
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+
     //注册
     @RequestMapping(value="/register")
     public ResponseEntity<Response<User>> userAdd(@Validated({User.CREATE.class}) User user,
                 BindingResult bindingResult){
+            logger.info("register");
             Response<User> response = new Response<>();
             if (bindingResult.hasErrors()) {
                 response.fail(bindingResult.getFieldErrors().get(0).getDefaultMessage());
@@ -41,6 +46,7 @@ public class UserController extends BaseController{
             HttpServletRequest request,
             @Validated({User.LOGIN.class}) User user,
             BindingResult bindingResult) {
+        logger.info("signin");
         Response<User> response = new Response<>();
 
         if (getUserSession(request)!=null){
@@ -62,6 +68,7 @@ public class UserController extends BaseController{
     //用户登出
     @RequestMapping(value = "/signout")
     public ResponseEntity<Response<Boolean>> signout(HttpServletRequest request) {
+        logger.info("signout");
         Response<Boolean> response = new Response<>();
         if (getUserSession(request)==null){
             response.fail("请先登录");
@@ -71,5 +78,27 @@ public class UserController extends BaseController{
         response.setData(true);
         response.success("登出成功");
         return new ResponseEntity<Response<Boolean>>(response, HttpStatus.OK);
+    }
+
+    //用户信息修改
+    @RequestMapping(value = "/modify")
+    public ResponseEntity<Response<User>> userModify(
+            HttpServletRequest request,
+            @Validated({User.UPDATE.class}) User user,
+            BindingResult bindingResult) {
+        logger.info("modify user");
+        Response<User> response = new Response<>();
+        if (bindingResult.hasErrors()) {
+            response.fail(bindingResult.getFieldErrors().get(0).getDefaultMessage());
+            return new ResponseEntity<Response<User>>(response, HttpStatus.OK);
+        }
+        if (getUserSession(request)==null){
+            response.fail("请先登录");
+            return new ResponseEntity<Response<User>>(response, HttpStatus.OK);
+        }
+        user.setUserid(getUserSession(request).getUserid());
+        response = userService.modify(user);
+
+        return new ResponseEntity<Response<User>>(response, HttpStatus.OK);
     }
 }

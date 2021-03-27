@@ -10,4 +10,7 @@ public interface UserService {
 
     //用户登陆
     Response<User> signin(User user);
+
+    //用户信息修改
+    Response<User> modify(User user);
 }

@@ -75,4 +75,27 @@ public class UserServiceImp implements UserService{
 
         return false;
     }
+
+
+    //用户信息修改
+    @Override
+    public Response<User> modify(User user) {
+        Response<User> response = new Response<>();
+        User oldUser=userMapper.selectByPrimaryKey(user.getUserid());
+        if(user.getUsername()!=null&&!(user.getUsername().equals(oldUser.getUsername()))&&userNameExist(user.getUsername())==true){
+            return response.fail("用户名已存在");
+        }
+        if(user.getPhoto()!=null){
+
+        }
+        UserExample userExample = new UserExample();
+        userExample.or().andUseridEqualTo(user.getUserid());
+
+        int n = userMapper.updateByExampleSelective(user, userExample);
+        if (n > 0) {
+            return response.success("修改成功");
+        } else {
+            return response.fail("修改失败");
+        }
+    }
 }
