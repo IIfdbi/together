@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="find_friend.mapper.TalkMapper">
-  <resultMap id="BaseResultMap" type="find_friend.po.TalkKey">
-    <id column="relationID" jdbcType="VARCHAR" property="relationid" />
-    <id column="messageID" jdbcType="VARCHAR" property="messageid" />
+  <resultMap id="BaseResultMap" type="find_friend.po.Talk">
+    <id column="relationid" jdbcType="VARCHAR" property="relationid" />
+    <result column="messageid" jdbcType="VARCHAR" property="messageid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    relationID, messageID
+    relationid, messageid
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.TalkExample" resultMap="BaseResultMap">
     select
@@ -88,10 +88,15 @@
       </if>
     </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="find_friend.po.TalkKey">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from talk
+    where relationid = #{relationid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from talk
-    where relationID = #{relationid,jdbcType=VARCHAR}
-      and messageID = #{messageid,jdbcType=VARCHAR}
+    where relationid = #{relationid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="find_friend.po.TalkExample">
     delete from talk
@@ -99,18 +104,18 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="find_friend.po.TalkKey">
-    insert into talk (relationID, messageID)
+  <insert id="insert" parameterType="find_friend.po.Talk">
+    insert into talk (relationid, messageid)
     values (#{relationid,jdbcType=VARCHAR}, #{messageid,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="find_friend.po.TalkKey">
+  <insert id="insertSelective" parameterType="find_friend.po.Talk">
     insert into talk
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="relationid != null">
-        relationID,
+        relationid,
       </if>
       <if test="messageid != null">
-        messageID,
+        messageid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -132,10 +137,10 @@
     update talk
     <set>
       <if test="record.relationid != null">
-        relationID = #{record.relationid,jdbcType=VARCHAR},
+        relationid = #{record.relationid,jdbcType=VARCHAR},
       </if>
       <if test="record.messageid != null">
-        messageID = #{record.messageid,jdbcType=VARCHAR},
+        messageid = #{record.messageid,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -144,10 +149,24 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update talk
-    set relationID = #{record.relationid,jdbcType=VARCHAR},
-      messageID = #{record.messageid,jdbcType=VARCHAR}
+    set relationid = #{record.relationid,jdbcType=VARCHAR},
+      messageid = #{record.messageid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.Talk">
+    update talk
+    <set>
+      <if test="messageid != null">
+        messageid = #{messageid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where relationid = #{relationid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="find_friend.po.Talk">
+    update talk
+    set messageid = #{messageid,jdbcType=VARCHAR}
+    where relationid = #{relationid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -6,14 +6,8 @@ import java.util.Date;
 /**
  * @author 
  */
-public class Table implements Serializable {
-    private String tableid;
-
-    private String photo;
-
-    private Short maxNumber;
-
-    private Short nowNumber;
+public class Rtable implements Serializable {
+    private String rtableid;
 
     private Byte available;
 
@@ -25,44 +19,26 @@ public class Table implements Serializable {
 
     private Byte done;
 
+    private Short maxNumber;
+
     private String needid;
 
-    private String tablename;
+    private Short nowNumber;
+
+    private String photo;
+
+    private String rtablename;
 
     private String school;
 
     private static final long serialVersionUID = 1L;
 
-    public String getTableid() {
-        return tableid;
+    public String getRtableid() {
+        return rtableid;
     }
 
-    public void setTableid(String tableid) {
-        this.tableid = tableid;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public Short getMaxNumber() {
-        return maxNumber;
-    }
-
-    public void setMaxNumber(Short maxNumber) {
-        this.maxNumber = maxNumber;
-    }
-
-    public Short getNowNumber() {
-        return nowNumber;
-    }
-
-    public void setNowNumber(Short nowNumber) {
-        this.nowNumber = nowNumber;
+    public void setRtableid(String rtableid) {
+        this.rtableid = rtableid;
     }
 
     public Byte getAvailable() {
@@ -105,6 +81,14 @@ public class Table implements Serializable {
         this.done = done;
     }
 
+    public Short getMaxNumber() {
+        return maxNumber;
+    }
+
+    public void setMaxNumber(Short maxNumber) {
+        this.maxNumber = maxNumber;
+    }
+
     public String getNeedid() {
         return needid;
     }
@@ -113,12 +97,28 @@ public class Table implements Serializable {
         this.needid = needid;
     }
 
-    public String getTablename() {
-        return tablename;
+    public Short getNowNumber() {
+        return nowNumber;
     }
 
-    public void setTablename(String tablename) {
-        this.tablename = tablename;
+    public void setNowNumber(Short nowNumber) {
+        this.nowNumber = nowNumber;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getRtablename() {
+        return rtablename;
+    }
+
+    public void setRtablename(String rtablename) {
+        this.rtablename = rtablename;
     }
 
     public String getSchool() {

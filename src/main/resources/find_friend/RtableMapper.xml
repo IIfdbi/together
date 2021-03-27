@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="find_friend.mapper.TableMapper">
-  <resultMap id="BaseResultMap" type="find_friend.po.Table">
-    <id column="tableID" jdbcType="VARCHAR" property="tableid" />
-    <result column="photo" jdbcType="VARCHAR" property="photo" />
-    <result column="max_number" jdbcType="SMALLINT" property="maxNumber" />
-    <result column="now_number" jdbcType="SMALLINT" property="nowNumber" />
+<mapper namespace="find_friend.mapper.RtableMapper">
+  <resultMap id="BaseResultMap" type="find_friend.po.Rtable">
+    <id column="rtableid" jdbcType="VARCHAR" property="rtableid" />
     <result column="available" jdbcType="TINYINT" property="available" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="ddl" jdbcType="TIMESTAMP" property="ddl" />
     <result column="detail" jdbcType="VARCHAR" property="detail" />
     <result column="done" jdbcType="TINYINT" property="done" />
-    <result column="needID" jdbcType="VARCHAR" property="needid" />
-    <result column="tableName" jdbcType="VARCHAR" property="tablename" />
+    <result column="max_number" jdbcType="SMALLINT" property="maxNumber" />
+    <result column="needid" jdbcType="VARCHAR" property="needid" />
+    <result column="now_number" jdbcType="SMALLINT" property="nowNumber" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="rtablename" jdbcType="VARCHAR" property="rtablename" />
     <result column="school" jdbcType="VARCHAR" property="school" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,16 +74,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    tableID, photo, max_number, now_number, available, createTime, ddl, detail, done, 
-    needID, tableName, school
+    rtableid, available, createtime, ddl, detail, done, max_number, needid, now_number, 
+    photo, rtablename, school
   </sql>
-  <select id="selectByExample" parameterType="find_friend.po.TableExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="find_friend.po.RtableExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from table
+    from rtable
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -102,51 +102,42 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from table
-    where tableID = #{tableid,jdbcType=VARCHAR}
+    from rtable
+    where rtableid = #{rtableid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from table
-    where tableID = #{tableid,jdbcType=VARCHAR}
+    delete from rtable
+    where rtableid = #{rtableid,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="find_friend.po.TableExample">
-    delete from table
+  <delete id="deleteByExample" parameterType="find_friend.po.RtableExample">
+    delete from rtable
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="find_friend.po.Table">
-    insert into table (tableID, photo, max_number, 
-      now_number, available, createTime, 
+  <insert id="insert" parameterType="find_friend.po.Rtable">
+    insert into rtable (rtableid, available, createtime, 
       ddl, detail, done, 
-      needID, tableName, school
+      max_number, needid, now_number, 
+      photo, rtablename, school
       )
-    values (#{tableid,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{maxNumber,jdbcType=SMALLINT}, 
-      #{nowNumber,jdbcType=SMALLINT}, #{available,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, 
+    values (#{rtableid,jdbcType=VARCHAR}, #{available,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, 
       #{ddl,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR}, #{done,jdbcType=TINYINT}, 
-      #{needid,jdbcType=VARCHAR}, #{tablename,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}
+      #{maxNumber,jdbcType=SMALLINT}, #{needid,jdbcType=VARCHAR}, #{nowNumber,jdbcType=SMALLINT}, 
+      #{photo,jdbcType=VARCHAR}, #{rtablename,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="find_friend.po.Table">
-    insert into table
+  <insert id="insertSelective" parameterType="find_friend.po.Rtable">
+    insert into rtable
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="tableid != null">
-        tableID,
-      </if>
-      <if test="photo != null">
-        photo,
-      </if>
-      <if test="maxNumber != null">
-        max_number,
-      </if>
-      <if test="nowNumber != null">
-        now_number,
+      <if test="rtableid != null">
+        rtableid,
       </if>
       <if test="available != null">
         available,
       </if>
       <if test="createtime != null">
-        createTime,
+        createtime,
       </if>
       <if test="ddl != null">
         ddl,
@@ -157,28 +148,28 @@
       <if test="done != null">
         done,
       </if>
-      <if test="needid != null">
-        needID,
+      <if test="maxNumber != null">
+        max_number,
       </if>
-      <if test="tablename != null">
-        tableName,
+      <if test="needid != null">
+        needid,
+      </if>
+      <if test="nowNumber != null">
+        now_number,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="rtablename != null">
+        rtablename,
       </if>
       <if test="school != null">
         school,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="tableid != null">
-        #{tableid,jdbcType=VARCHAR},
-      </if>
-      <if test="photo != null">
-        #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="maxNumber != null">
-        #{maxNumber,jdbcType=SMALLINT},
-      </if>
-      <if test="nowNumber != null">
-        #{nowNumber,jdbcType=SMALLINT},
+      <if test="rtableid != null">
+        #{rtableid,jdbcType=VARCHAR},
       </if>
       <if test="available != null">
         #{available,jdbcType=TINYINT},
@@ -195,43 +186,43 @@
       <if test="done != null">
         #{done,jdbcType=TINYINT},
       </if>
+      <if test="maxNumber != null">
+        #{maxNumber,jdbcType=SMALLINT},
+      </if>
       <if test="needid != null">
         #{needid,jdbcType=VARCHAR},
       </if>
-      <if test="tablename != null">
-        #{tablename,jdbcType=VARCHAR},
+      <if test="nowNumber != null">
+        #{nowNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="rtablename != null">
+        #{rtablename,jdbcType=VARCHAR},
       </if>
       <if test="school != null">
         #{school,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="find_friend.po.TableExample" resultType="java.lang.Long">
-    select count(*) from table
+  <select id="countByExample" parameterType="find_friend.po.RtableExample" resultType="java.lang.Long">
+    select count(*) from rtable
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update table
+    update rtable
     <set>
-      <if test="record.tableid != null">
-        tableID = #{record.tableid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.photo != null">
-        photo = #{record.photo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.maxNumber != null">
-        max_number = #{record.maxNumber,jdbcType=SMALLINT},
-      </if>
-      <if test="record.nowNumber != null">
-        now_number = #{record.nowNumber,jdbcType=SMALLINT},
+      <if test="record.rtableid != null">
+        rtableid = #{record.rtableid,jdbcType=VARCHAR},
       </if>
       <if test="record.available != null">
         available = #{record.available,jdbcType=TINYINT},
       </if>
       <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.ddl != null">
         ddl = #{record.ddl,jdbcType=TIMESTAMP},
@@ -242,11 +233,20 @@
       <if test="record.done != null">
         done = #{record.done,jdbcType=TINYINT},
       </if>
-      <if test="record.needid != null">
-        needID = #{record.needid,jdbcType=VARCHAR},
+      <if test="record.maxNumber != null">
+        max_number = #{record.maxNumber,jdbcType=SMALLINT},
       </if>
-      <if test="record.tablename != null">
-        tableName = #{record.tablename,jdbcType=VARCHAR},
+      <if test="record.needid != null">
+        needid = #{record.needid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nowNumber != null">
+        now_number = #{record.nowNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="record.photo != null">
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rtablename != null">
+        rtablename = #{record.rtablename,jdbcType=VARCHAR},
       </if>
       <if test="record.school != null">
         school = #{record.school,jdbcType=VARCHAR},
@@ -257,40 +257,31 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update table
-    set tableID = #{record.tableid,jdbcType=VARCHAR},
-      photo = #{record.photo,jdbcType=VARCHAR},
-      max_number = #{record.maxNumber,jdbcType=SMALLINT},
-      now_number = #{record.nowNumber,jdbcType=SMALLINT},
+    update rtable
+    set rtableid = #{record.rtableid,jdbcType=VARCHAR},
       available = #{record.available,jdbcType=TINYINT},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
       ddl = #{record.ddl,jdbcType=TIMESTAMP},
       detail = #{record.detail,jdbcType=VARCHAR},
       done = #{record.done,jdbcType=TINYINT},
-      needID = #{record.needid,jdbcType=VARCHAR},
-      tableName = #{record.tablename,jdbcType=VARCHAR},
+      max_number = #{record.maxNumber,jdbcType=SMALLINT},
+      needid = #{record.needid,jdbcType=VARCHAR},
+      now_number = #{record.nowNumber,jdbcType=SMALLINT},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      rtablename = #{record.rtablename,jdbcType=VARCHAR},
       school = #{record.school,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.Table">
-    update table
+  <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.Rtable">
+    update rtable
     <set>
-      <if test="photo != null">
-        photo = #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="maxNumber != null">
-        max_number = #{maxNumber,jdbcType=SMALLINT},
-      </if>
-      <if test="nowNumber != null">
-        now_number = #{nowNumber,jdbcType=SMALLINT},
-      </if>
       <if test="available != null">
         available = #{available,jdbcType=TINYINT},
       </if>
       <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+        createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="ddl != null">
         ddl = #{ddl,jdbcType=TIMESTAMP},
@@ -301,31 +292,40 @@
       <if test="done != null">
         done = #{done,jdbcType=TINYINT},
       </if>
-      <if test="needid != null">
-        needID = #{needid,jdbcType=VARCHAR},
+      <if test="maxNumber != null">
+        max_number = #{maxNumber,jdbcType=SMALLINT},
       </if>
-      <if test="tablename != null">
-        tableName = #{tablename,jdbcType=VARCHAR},
+      <if test="needid != null">
+        needid = #{needid,jdbcType=VARCHAR},
+      </if>
+      <if test="nowNumber != null">
+        now_number = #{nowNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="rtablename != null">
+        rtablename = #{rtablename,jdbcType=VARCHAR},
       </if>
       <if test="school != null">
         school = #{school,jdbcType=VARCHAR},
       </if>
     </set>
-    where tableID = #{tableid,jdbcType=VARCHAR}
+    where rtableid = #{rtableid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="find_friend.po.Table">
-    update table
-    set photo = #{photo,jdbcType=VARCHAR},
-      max_number = #{maxNumber,jdbcType=SMALLINT},
-      now_number = #{nowNumber,jdbcType=SMALLINT},
-      available = #{available,jdbcType=TINYINT},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
+  <update id="updateByPrimaryKey" parameterType="find_friend.po.Rtable">
+    update rtable
+    set available = #{available,jdbcType=TINYINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
       ddl = #{ddl,jdbcType=TIMESTAMP},
       detail = #{detail,jdbcType=VARCHAR},
       done = #{done,jdbcType=TINYINT},
-      needID = #{needid,jdbcType=VARCHAR},
-      tableName = #{tablename,jdbcType=VARCHAR},
+      max_number = #{maxNumber,jdbcType=SMALLINT},
+      needid = #{needid,jdbcType=VARCHAR},
+      now_number = #{nowNumber,jdbcType=SMALLINT},
+      photo = #{photo,jdbcType=VARCHAR},
+      rtablename = #{rtablename,jdbcType=VARCHAR},
       school = #{school,jdbcType=VARCHAR}
-    where tableID = #{tableid,jdbcType=VARCHAR}
+    where rtableid = #{rtableid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="find_friend.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="find_friend.po.User">
-    <id column="userID" jdbcType="VARCHAR" property="userid" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
-    <result column="school" jdbcType="VARCHAR" property="school" />
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="hobby" jdbcType="VARCHAR" property="hobby" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
-    <result column="hobby" jdbcType="VARCHAR" property="hobby" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    userID, username, pwd, school, department, nickname, photo, hobby, createTime
+    userid, createtime, department, hobby, nickname, photo, pwd, school, username
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.UserExample" resultMap="BaseResultMap">
     select
@@ -99,11 +99,11 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where userID = #{userid,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
-    where userID = #{userid,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="find_friend.po.UserExample">
     delete from user
@@ -112,32 +112,29 @@
     </if>
   </delete>
   <insert id="insert" parameterType="find_friend.po.User">
-    insert into user (userID, username, pwd, 
-      school, department, nickname, 
-      photo, hobby, createTime
+    insert into user (userid, createtime, department, 
+      hobby, nickname, photo, 
+      pwd, school, username
       )
-    values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-      #{school,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
-      #{photo,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+    values (#{userid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{department,jdbcType=VARCHAR}, 
+      #{hobby,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userid != null">
-        userID,
+        userid,
       </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="pwd != null">
-        pwd,
-      </if>
-      <if test="school != null">
-        school,
+      <if test="createtime != null">
+        createtime,
       </if>
       <if test="department != null">
         department,
+      </if>
+      <if test="hobby != null">
+        hobby,
       </if>
       <if test="nickname != null">
         nickname,
@@ -145,28 +142,28 @@
       <if test="photo != null">
         photo,
       </if>
-      <if test="hobby != null">
-        hobby,
+      <if test="pwd != null">
+        pwd,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="school != null">
+        school,
+      </if>
+      <if test="username != null">
+        username,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userid != null">
         #{userid,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd != null">
-        #{pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="school != null">
-        #{school,jdbcType=VARCHAR},
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="department != null">
         #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        #{hobby,jdbcType=VARCHAR},
       </if>
       <if test="nickname != null">
         #{nickname,jdbcType=VARCHAR},
@@ -174,11 +171,14 @@
       <if test="photo != null">
         #{photo,jdbcType=VARCHAR},
       </if>
-      <if test="hobby != null">
-        #{hobby,jdbcType=VARCHAR},
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -192,19 +192,16 @@
     update user
     <set>
       <if test="record.userid != null">
-        userID = #{record.userid,jdbcType=VARCHAR},
+        userid = #{record.userid,jdbcType=VARCHAR},
       </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwd != null">
-        pwd = #{record.pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="record.school != null">
-        school = #{record.school,jdbcType=VARCHAR},
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.department != null">
         department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hobby != null">
+        hobby = #{record.hobby,jdbcType=VARCHAR},
       </if>
       <if test="record.nickname != null">
         nickname = #{record.nickname,jdbcType=VARCHAR},
@@ -212,11 +209,14 @@
       <if test="record.photo != null">
         photo = #{record.photo,jdbcType=VARCHAR},
       </if>
-      <if test="record.hobby != null">
-        hobby = #{record.hobby,jdbcType=VARCHAR},
+      <if test="record.pwd != null">
+        pwd = #{record.pwd,jdbcType=VARCHAR},
       </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      <if test="record.school != null">
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -225,15 +225,15 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update user
-    set userID = #{record.userid,jdbcType=VARCHAR},
-      username = #{record.username,jdbcType=VARCHAR},
-      pwd = #{record.pwd,jdbcType=VARCHAR},
-      school = #{record.school,jdbcType=VARCHAR},
+    set userid = #{record.userid,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
       department = #{record.department,jdbcType=VARCHAR},
+      hobby = #{record.hobby,jdbcType=VARCHAR},
       nickname = #{record.nickname,jdbcType=VARCHAR},
       photo = #{record.photo,jdbcType=VARCHAR},
-      hobby = #{record.hobby,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP}
+      pwd = #{record.pwd,jdbcType=VARCHAR},
+      school = #{record.school,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,17 +241,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.User">
     update user
     <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd != null">
-        pwd = #{pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="school != null">
-        school = #{school,jdbcType=VARCHAR},
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="department != null">
         department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        hobby = #{hobby,jdbcType=VARCHAR},
       </if>
       <if test="nickname != null">
         nickname = #{nickname,jdbcType=VARCHAR},
@@ -259,25 +256,28 @@
       <if test="photo != null">
         photo = #{photo,jdbcType=VARCHAR},
       </if>
-      <if test="hobby != null">
-        hobby = #{hobby,jdbcType=VARCHAR},
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
       </if>
     </set>
-    where userID = #{userid,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="find_friend.po.User">
     update user
-    set username = #{username,jdbcType=VARCHAR},
-      pwd = #{pwd,jdbcType=VARCHAR},
-      school = #{school,jdbcType=VARCHAR},
+    set createtime = #{createtime,jdbcType=TIMESTAMP},
       department = #{department,jdbcType=VARCHAR},
+      hobby = #{hobby,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
       photo = #{photo,jdbcType=VARCHAR},
-      hobby = #{hobby,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP}
-    where userID = #{userid,jdbcType=VARCHAR}
+      pwd = #{pwd,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
   </update>
 </mapper>

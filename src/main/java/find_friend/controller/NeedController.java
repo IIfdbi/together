@@ -33,7 +33,7 @@ public class NeedController extends BaseController{
         }
         need.setNeedid(UUID.randomUUID().toString().replaceAll("-", ""));
         need.setSubmitted(Byte.parseByte("0"));
-        need.setCreatetime(new Date());
+        //need.setCreatetime(new Date());
         need.setCreateuserid(getUserSession(request).getUserid());
         needRepository.save(need);
         return new ResponseEntity<>(ResultModel.ok("需求发布成功"), HttpStatus.OK);

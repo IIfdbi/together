@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="find_friend.mapper.RelationMapper">
   <resultMap id="BaseResultMap" type="find_friend.po.Relation">
-    <id column="relationID" jdbcType="VARCHAR" property="relationid" />
-    <result column="userID" jdbcType="VARCHAR" property="userid" />
-    <result column="parternerID" jdbcType="VARCHAR" property="parternerid" />
+    <id column="relationid" jdbcType="VARCHAR" property="relationid" />
+    <result column="parternerid" jdbcType="VARCHAR" property="parternerid" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    relationID, userID, parternerID
+    relationid, parternerid, userid
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.RelationExample" resultMap="BaseResultMap">
     select
@@ -93,11 +93,11 @@
     select 
     <include refid="Base_Column_List" />
     from relation
-    where relationID = #{relationid,jdbcType=VARCHAR}
+    where relationid = #{relationid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from relation
-    where relationID = #{relationid,jdbcType=VARCHAR}
+    where relationid = #{relationid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="find_friend.po.RelationExample">
     delete from relation
@@ -106,33 +106,33 @@
     </if>
   </delete>
   <insert id="insert" parameterType="find_friend.po.Relation">
-    insert into relation (relationID, userID, parternerID
+    insert into relation (relationid, parternerid, userid
       )
-    values (#{relationid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{parternerid,jdbcType=VARCHAR}
+    values (#{relationid,jdbcType=VARCHAR}, #{parternerid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.Relation">
     insert into relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="relationid != null">
-        relationID,
-      </if>
-      <if test="userid != null">
-        userID,
+        relationid,
       </if>
       <if test="parternerid != null">
-        parternerID,
+        parternerid,
+      </if>
+      <if test="userid != null">
+        userid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="relationid != null">
         #{relationid,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
-      </if>
       <if test="parternerid != null">
         #{parternerid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -146,13 +146,13 @@
     update relation
     <set>
       <if test="record.relationid != null">
-        relationID = #{record.relationid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userid != null">
-        userID = #{record.userid,jdbcType=VARCHAR},
+        relationid = #{record.relationid,jdbcType=VARCHAR},
       </if>
       <if test="record.parternerid != null">
-        parternerID = #{record.parternerid,jdbcType=VARCHAR},
+        parternerid = #{record.parternerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -161,9 +161,9 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update relation
-    set relationID = #{record.relationid,jdbcType=VARCHAR},
-      userID = #{record.userid,jdbcType=VARCHAR},
-      parternerID = #{record.parternerid,jdbcType=VARCHAR}
+    set relationid = #{record.relationid,jdbcType=VARCHAR},
+      parternerid = #{record.parternerid,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -171,19 +171,19 @@
   <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.Relation">
     update relation
     <set>
-      <if test="userid != null">
-        userID = #{userid,jdbcType=VARCHAR},
-      </if>
       <if test="parternerid != null">
-        parternerID = #{parternerid,jdbcType=VARCHAR},
+        parternerid = #{parternerid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=VARCHAR},
       </if>
     </set>
-    where relationID = #{relationid,jdbcType=VARCHAR}
+    where relationid = #{relationid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="find_friend.po.Relation">
     update relation
-    set userID = #{userid,jdbcType=VARCHAR},
-      parternerID = #{parternerid,jdbcType=VARCHAR}
-    where relationID = #{relationid,jdbcType=VARCHAR}
+    set parternerid = #{parternerid,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=VARCHAR}
+    where relationid = #{relationid,jdbcType=VARCHAR}
   </update>
 </mapper>

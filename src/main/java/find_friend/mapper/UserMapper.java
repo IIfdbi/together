@@ -3,9 +3,8 @@ package find_friend.mapper;
 import find_friend.po.User;
 import find_friend.po.UserExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 @Mapper

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="find_friend.mapper.TableMessageMapper">
-  <resultMap id="BaseResultMap" type="find_friend.po.TableMessageKey">
-    <id column="tableID" jdbcType="VARCHAR" property="tableid" />
-    <id column="messageID" jdbcType="VARCHAR" property="messageid" />
+<mapper namespace="find_friend.mapper.RtableMessageMapper">
+  <resultMap id="BaseResultMap" type="find_friend.po.RtableMessage">
+    <id column="rtableid" jdbcType="VARCHAR" property="rtableid" />
+    <result column="messageid" jdbcType="VARCHAR" property="messageid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    tableID, messageID
+    rtableid, messageid
   </sql>
-  <select id="selectByExample" parameterType="find_friend.po.TableMessageExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="find_friend.po.RtableMessageExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from table_message
+    from rtable_message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,54 +88,59 @@
       </if>
     </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="find_friend.po.TableMessageKey">
-    delete from table_message
-    where tableID = #{tableid,jdbcType=VARCHAR}
-      and messageID = #{messageid,jdbcType=VARCHAR}
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rtable_message
+    where rtableid = #{rtableid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from rtable_message
+    where rtableid = #{rtableid,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="find_friend.po.TableMessageExample">
-    delete from table_message
+  <delete id="deleteByExample" parameterType="find_friend.po.RtableMessageExample">
+    delete from rtable_message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="find_friend.po.TableMessageKey">
-    insert into table_message (tableID, messageID)
-    values (#{tableid,jdbcType=VARCHAR}, #{messageid,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="find_friend.po.RtableMessage">
+    insert into rtable_message (rtableid, messageid)
+    values (#{rtableid,jdbcType=VARCHAR}, #{messageid,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="find_friend.po.TableMessageKey">
-    insert into table_message
+  <insert id="insertSelective" parameterType="find_friend.po.RtableMessage">
+    insert into rtable_message
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="tableid != null">
-        tableID,
+      <if test="rtableid != null">
+        rtableid,
       </if>
       <if test="messageid != null">
-        messageID,
+        messageid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="tableid != null">
-        #{tableid,jdbcType=VARCHAR},
+      <if test="rtableid != null">
+        #{rtableid,jdbcType=VARCHAR},
       </if>
       <if test="messageid != null">
         #{messageid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="find_friend.po.TableMessageExample" resultType="java.lang.Long">
-    select count(*) from table_message
+  <select id="countByExample" parameterType="find_friend.po.RtableMessageExample" resultType="java.lang.Long">
+    select count(*) from rtable_message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update table_message
+    update rtable_message
     <set>
-      <if test="record.tableid != null">
-        tableID = #{record.tableid,jdbcType=VARCHAR},
+      <if test="record.rtableid != null">
+        rtableid = #{record.rtableid,jdbcType=VARCHAR},
       </if>
       <if test="record.messageid != null">
-        messageID = #{record.messageid,jdbcType=VARCHAR},
+        messageid = #{record.messageid,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -143,11 +148,25 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update table_message
-    set tableID = #{record.tableid,jdbcType=VARCHAR},
-      messageID = #{record.messageid,jdbcType=VARCHAR}
+    update rtable_message
+    set rtableid = #{record.rtableid,jdbcType=VARCHAR},
+      messageid = #{record.messageid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.RtableMessage">
+    update rtable_message
+    <set>
+      <if test="messageid != null">
+        messageid = #{messageid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rtableid = #{rtableid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="find_friend.po.RtableMessage">
+    update rtable_message
+    set messageid = #{messageid,jdbcType=VARCHAR}
+    where rtableid = #{rtableid,jdbcType=VARCHAR}
   </update>
 </mapper>

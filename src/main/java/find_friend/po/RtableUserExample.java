@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TableUserExample {
+public class RtableUserExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -15,7 +15,7 @@ public class TableUserExample {
 
     private Integer offset;
 
-    public TableUserExample() {
+    public RtableUserExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -125,213 +125,73 @@ public class TableUserExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andUseridIsNull() {
-            addCriterion("userID is null");
+        public Criteria andRtablememberidIsNull() {
+            addCriterion("rtablememberid is null");
             return (Criteria) this;
         }
 
-        public Criteria andUseridIsNotNull() {
-            addCriterion("userID is not null");
+        public Criteria andRtablememberidIsNotNull() {
+            addCriterion("rtablememberid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUseridEqualTo(String value) {
-            addCriterion("userID =", value, "userid");
+        public Criteria andRtablememberidEqualTo(String value) {
+            addCriterion("rtablememberid =", value, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridNotEqualTo(String value) {
-            addCriterion("userID <>", value, "userid");
+        public Criteria andRtablememberidNotEqualTo(String value) {
+            addCriterion("rtablememberid <>", value, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridGreaterThan(String value) {
-            addCriterion("userID >", value, "userid");
+        public Criteria andRtablememberidGreaterThan(String value) {
+            addCriterion("rtablememberid >", value, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridGreaterThanOrEqualTo(String value) {
-            addCriterion("userID >=", value, "userid");
+        public Criteria andRtablememberidGreaterThanOrEqualTo(String value) {
+            addCriterion("rtablememberid >=", value, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridLessThan(String value) {
-            addCriterion("userID <", value, "userid");
+        public Criteria andRtablememberidLessThan(String value) {
+            addCriterion("rtablememberid <", value, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridLessThanOrEqualTo(String value) {
-            addCriterion("userID <=", value, "userid");
+        public Criteria andRtablememberidLessThanOrEqualTo(String value) {
+            addCriterion("rtablememberid <=", value, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridLike(String value) {
-            addCriterion("userID like", value, "userid");
+        public Criteria andRtablememberidLike(String value) {
+            addCriterion("rtablememberid like", value, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridNotLike(String value) {
-            addCriterion("userID not like", value, "userid");
+        public Criteria andRtablememberidNotLike(String value) {
+            addCriterion("rtablememberid not like", value, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridIn(List<String> values) {
-            addCriterion("userID in", values, "userid");
+        public Criteria andRtablememberidIn(List<String> values) {
+            addCriterion("rtablememberid in", values, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridNotIn(List<String> values) {
-            addCriterion("userID not in", values, "userid");
+        public Criteria andRtablememberidNotIn(List<String> values) {
+            addCriterion("rtablememberid not in", values, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridBetween(String value1, String value2) {
-            addCriterion("userID between", value1, value2, "userid");
+        public Criteria andRtablememberidBetween(String value1, String value2) {
+            addCriterion("rtablememberid between", value1, value2, "rtablememberid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridNotBetween(String value1, String value2) {
-            addCriterion("userID not between", value1, value2, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidIsNull() {
-            addCriterion("tableID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidIsNotNull() {
-            addCriterion("tableID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidEqualTo(String value) {
-            addCriterion("tableID =", value, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidNotEqualTo(String value) {
-            addCriterion("tableID <>", value, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidGreaterThan(String value) {
-            addCriterion("tableID >", value, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidGreaterThanOrEqualTo(String value) {
-            addCriterion("tableID >=", value, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidLessThan(String value) {
-            addCriterion("tableID <", value, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidLessThanOrEqualTo(String value) {
-            addCriterion("tableID <=", value, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidLike(String value) {
-            addCriterion("tableID like", value, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidNotLike(String value) {
-            addCriterion("tableID not like", value, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidIn(List<String> values) {
-            addCriterion("tableID in", values, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidNotIn(List<String> values) {
-            addCriterion("tableID not in", values, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidBetween(String value1, String value2) {
-            addCriterion("tableID between", value1, value2, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTableidNotBetween(String value1, String value2) {
-            addCriterion("tableID not between", value1, value2, "tableid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidIsNull() {
-            addCriterion("tablememberID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidIsNotNull() {
-            addCriterion("tablememberID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidEqualTo(String value) {
-            addCriterion("tablememberID =", value, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidNotEqualTo(String value) {
-            addCriterion("tablememberID <>", value, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidGreaterThan(String value) {
-            addCriterion("tablememberID >", value, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidGreaterThanOrEqualTo(String value) {
-            addCriterion("tablememberID >=", value, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidLessThan(String value) {
-            addCriterion("tablememberID <", value, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidLessThanOrEqualTo(String value) {
-            addCriterion("tablememberID <=", value, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidLike(String value) {
-            addCriterion("tablememberID like", value, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidNotLike(String value) {
-            addCriterion("tablememberID not like", value, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidIn(List<String> values) {
-            addCriterion("tablememberID in", values, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidNotIn(List<String> values) {
-            addCriterion("tablememberID not in", values, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidBetween(String value1, String value2) {
-            addCriterion("tablememberID between", value1, value2, "tablememberid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTablememberidNotBetween(String value1, String value2) {
-            addCriterion("tablememberID not between", value1, value2, "tablememberid");
+        public Criteria andRtablememberidNotBetween(String value1, String value2) {
+            addCriterion("rtablememberid not between", value1, value2, "rtablememberid");
             return (Criteria) this;
         }
 
@@ -405,6 +265,126 @@ public class TableUserExample {
             return (Criteria) this;
         }
 
+        public Criteria andJoinedIsNull() {
+            addCriterion("joined is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedIsNotNull() {
+            addCriterion("joined is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedEqualTo(Byte value) {
+            addCriterion("joined =", value, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedNotEqualTo(Byte value) {
+            addCriterion("joined <>", value, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedGreaterThan(Byte value) {
+            addCriterion("joined >", value, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedGreaterThanOrEqualTo(Byte value) {
+            addCriterion("joined >=", value, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedLessThan(Byte value) {
+            addCriterion("joined <", value, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedLessThanOrEqualTo(Byte value) {
+            addCriterion("joined <=", value, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedIn(List<Byte> values) {
+            addCriterion("joined in", values, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedNotIn(List<Byte> values) {
+            addCriterion("joined not in", values, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedBetween(Byte value1, Byte value2) {
+            addCriterion("joined between", value1, value2, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinedNotBetween(Byte value1, Byte value2) {
+            addCriterion("joined not between", value1, value2, "joined");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeIsNull() {
+            addCriterion("jointime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeIsNotNull() {
+            addCriterion("jointime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeEqualTo(Date value) {
+            addCriterion("jointime =", value, "jointime");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeNotEqualTo(Date value) {
+            addCriterion("jointime <>", value, "jointime");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeGreaterThan(Date value) {
+            addCriterion("jointime >", value, "jointime");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("jointime >=", value, "jointime");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeLessThan(Date value) {
+            addCriterion("jointime <", value, "jointime");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeLessThanOrEqualTo(Date value) {
+            addCriterion("jointime <=", value, "jointime");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeIn(List<Date> values) {
+            addCriterion("jointime in", values, "jointime");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeNotIn(List<Date> values) {
+            addCriterion("jointime not in", values, "jointime");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeBetween(Date value1, Date value2) {
+            addCriterion("jointime between", value1, value2, "jointime");
+            return (Criteria) this;
+        }
+
+        public Criteria andJointimeNotBetween(Date value1, Date value2) {
+            addCriterion("jointime not between", value1, value2, "jointime");
+            return (Criteria) this;
+        }
+
         public Criteria andReadyIsNull() {
             addCriterion("ready is null");
             return (Criteria) this;
@@ -465,123 +445,143 @@ public class TableUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andJointimeIsNull() {
-            addCriterion("joinTime is null");
+        public Criteria andRtableidIsNull() {
+            addCriterion("rtableid is null");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeIsNotNull() {
-            addCriterion("joinTime is not null");
+        public Criteria andRtableidIsNotNull() {
+            addCriterion("rtableid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeEqualTo(Date value) {
-            addCriterion("joinTime =", value, "jointime");
+        public Criteria andRtableidEqualTo(String value) {
+            addCriterion("rtableid =", value, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeNotEqualTo(Date value) {
-            addCriterion("joinTime <>", value, "jointime");
+        public Criteria andRtableidNotEqualTo(String value) {
+            addCriterion("rtableid <>", value, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeGreaterThan(Date value) {
-            addCriterion("joinTime >", value, "jointime");
+        public Criteria andRtableidGreaterThan(String value) {
+            addCriterion("rtableid >", value, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("joinTime >=", value, "jointime");
+        public Criteria andRtableidGreaterThanOrEqualTo(String value) {
+            addCriterion("rtableid >=", value, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeLessThan(Date value) {
-            addCriterion("joinTime <", value, "jointime");
+        public Criteria andRtableidLessThan(String value) {
+            addCriterion("rtableid <", value, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeLessThanOrEqualTo(Date value) {
-            addCriterion("joinTime <=", value, "jointime");
+        public Criteria andRtableidLessThanOrEqualTo(String value) {
+            addCriterion("rtableid <=", value, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeIn(List<Date> values) {
-            addCriterion("joinTime in", values, "jointime");
+        public Criteria andRtableidLike(String value) {
+            addCriterion("rtableid like", value, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeNotIn(List<Date> values) {
-            addCriterion("joinTime not in", values, "jointime");
+        public Criteria andRtableidNotLike(String value) {
+            addCriterion("rtableid not like", value, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeBetween(Date value1, Date value2) {
-            addCriterion("joinTime between", value1, value2, "jointime");
+        public Criteria andRtableidIn(List<String> values) {
+            addCriterion("rtableid in", values, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJointimeNotBetween(Date value1, Date value2) {
-            addCriterion("joinTime not between", value1, value2, "jointime");
+        public Criteria andRtableidNotIn(List<String> values) {
+            addCriterion("rtableid not in", values, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedIsNull() {
-            addCriterion("joined is null");
+        public Criteria andRtableidBetween(String value1, String value2) {
+            addCriterion("rtableid between", value1, value2, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedIsNotNull() {
-            addCriterion("joined is not null");
+        public Criteria andRtableidNotBetween(String value1, String value2) {
+            addCriterion("rtableid not between", value1, value2, "rtableid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedEqualTo(Byte value) {
-            addCriterion("joined =", value, "joined");
+        public Criteria andUseridIsNull() {
+            addCriterion("userid is null");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedNotEqualTo(Byte value) {
-            addCriterion("joined <>", value, "joined");
+        public Criteria andUseridIsNotNull() {
+            addCriterion("userid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedGreaterThan(Byte value) {
-            addCriterion("joined >", value, "joined");
+        public Criteria andUseridEqualTo(String value) {
+            addCriterion("userid =", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedGreaterThanOrEqualTo(Byte value) {
-            addCriterion("joined >=", value, "joined");
+        public Criteria andUseridNotEqualTo(String value) {
+            addCriterion("userid <>", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedLessThan(Byte value) {
-            addCriterion("joined <", value, "joined");
+        public Criteria andUseridGreaterThan(String value) {
+            addCriterion("userid >", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedLessThanOrEqualTo(Byte value) {
-            addCriterion("joined <=", value, "joined");
+        public Criteria andUseridGreaterThanOrEqualTo(String value) {
+            addCriterion("userid >=", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedIn(List<Byte> values) {
-            addCriterion("joined in", values, "joined");
+        public Criteria andUseridLessThan(String value) {
+            addCriterion("userid <", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedNotIn(List<Byte> values) {
-            addCriterion("joined not in", values, "joined");
+        public Criteria andUseridLessThanOrEqualTo(String value) {
+            addCriterion("userid <=", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedBetween(Byte value1, Byte value2) {
-            addCriterion("joined between", value1, value2, "joined");
+        public Criteria andUseridLike(String value) {
+            addCriterion("userid like", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedNotBetween(Byte value1, Byte value2) {
-            addCriterion("joined not between", value1, value2, "joined");
+        public Criteria andUseridNotLike(String value) {
+            addCriterion("userid not like", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridIn(List<String> values) {
+            addCriterion("userid in", values, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotIn(List<String> values) {
+            addCriterion("userid not in", values, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridBetween(String value1, String value2) {
+            addCriterion("userid between", value1, value2, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotBetween(String value1, String value2) {
+            addCriterion("userid not between", value1, value2, "userid");
             return (Criteria) this;
         }
     }

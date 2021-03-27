@@ -2,16 +2,19 @@ package find_friend.mapper;
 
 import find_friend.po.Need;
 import find_friend.po.NeedExample;
-import find_friend.po.NeedKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Mapper
+@Repository
 public interface NeedMapper {
     long countByExample(NeedExample example);
 
     int deleteByExample(NeedExample example);
 
-    int deleteByPrimaryKey(NeedKey key);
+    int deleteByPrimaryKey(String needid);
 
     int insert(Need record);
 
@@ -19,7 +22,7 @@ public interface NeedMapper {
 
     List<Need> selectByExample(NeedExample example);
 
-    Need selectByPrimaryKey(NeedKey key);
+    Need selectByPrimaryKey(String needid);
 
     int updateByExampleSelective(@Param("record") Need record, @Param("example") NeedExample example);
 

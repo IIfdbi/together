@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="find_friend.mapper.NeedUserMapper">
   <resultMap id="BaseResultMap" type="find_friend.po.NeedUser">
-    <id column="needID" jdbcType="VARCHAR" property="needid" />
-    <id column="userID" jdbcType="VARCHAR" property="userid" />
+    <id column="needid" jdbcType="VARCHAR" property="needid" />
     <result column="joined" jdbcType="TINYINT" property="joined" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    needID, userID, joined
+    needid, joined, userid
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.NeedUserExample" resultMap="BaseResultMap">
     select
@@ -89,17 +89,15 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="find_friend.po.NeedUserKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from need_user
-    where needID = #{needid,jdbcType=VARCHAR}
-      and userID = #{userid,jdbcType=VARCHAR}
+    where needid = #{needid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="find_friend.po.NeedUserKey">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from need_user
-    where needID = #{needid,jdbcType=VARCHAR}
-      and userID = #{userid,jdbcType=VARCHAR}
+    where needid = #{needid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="find_friend.po.NeedUserExample">
     delete from need_user
@@ -108,33 +106,33 @@
     </if>
   </delete>
   <insert id="insert" parameterType="find_friend.po.NeedUser">
-    insert into need_user (needID, userID, joined
+    insert into need_user (needid, joined, userid
       )
-    values (#{needid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{joined,jdbcType=TINYINT}
+    values (#{needid,jdbcType=VARCHAR}, #{joined,jdbcType=TINYINT}, #{userid,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.NeedUser">
     insert into need_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="needid != null">
-        needID,
-      </if>
-      <if test="userid != null">
-        userID,
+        needid,
       </if>
       <if test="joined != null">
         joined,
+      </if>
+      <if test="userid != null">
+        userid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="needid != null">
         #{needid,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
-      </if>
       <if test="joined != null">
         #{joined,jdbcType=TINYINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -148,13 +146,13 @@
     update need_user
     <set>
       <if test="record.needid != null">
-        needID = #{record.needid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userid != null">
-        userID = #{record.userid,jdbcType=VARCHAR},
+        needid = #{record.needid,jdbcType=VARCHAR},
       </if>
       <if test="record.joined != null">
         joined = #{record.joined,jdbcType=TINYINT},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -163,9 +161,9 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update need_user
-    set needID = #{record.needid,jdbcType=VARCHAR},
-      userID = #{record.userid,jdbcType=VARCHAR},
-      joined = #{record.joined,jdbcType=TINYINT}
+    set needid = #{record.needid,jdbcType=VARCHAR},
+      joined = #{record.joined,jdbcType=TINYINT},
+      userid = #{record.userid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -176,14 +174,16 @@
       <if test="joined != null">
         joined = #{joined,jdbcType=TINYINT},
       </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
     </set>
-    where needID = #{needid,jdbcType=VARCHAR}
-      and userID = #{userid,jdbcType=VARCHAR}
+    where needid = #{needid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="find_friend.po.NeedUser">
     update need_user
-    set joined = #{joined,jdbcType=TINYINT}
-    where needID = #{needid,jdbcType=VARCHAR}
-      and userID = #{userid,jdbcType=VARCHAR}
+    set joined = #{joined,jdbcType=TINYINT},
+      userid = #{userid,jdbcType=VARCHAR}
+    where needid = #{needid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="find_friend.mapper.TagMapper">
   <resultMap id="BaseResultMap" type="find_friend.po.Tag">
-    <id column="tagID" jdbcType="VARCHAR" property="tagid" />
-    <result column="tagName" jdbcType="VARCHAR" property="tagname" />
+    <id column="tagid" jdbcType="VARCHAR" property="tagid" />
+    <result column="tagname" jdbcType="VARCHAR" property="tagname" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    tagID, tagName
+    tagid, tagname
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.TagExample" resultMap="BaseResultMap">
     select
@@ -92,11 +92,11 @@
     select 
     <include refid="Base_Column_List" />
     from tag
-    where tagID = #{tagid,jdbcType=VARCHAR}
+    where tagid = #{tagid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tag
-    where tagID = #{tagid,jdbcType=VARCHAR}
+    where tagid = #{tagid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="find_friend.po.TagExample">
     delete from tag
@@ -105,17 +105,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="find_friend.po.Tag">
-    insert into tag (tagID, tagName)
+    insert into tag (tagid, tagname)
     values (#{tagid,jdbcType=VARCHAR}, #{tagname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.Tag">
     insert into tag
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tagid != null">
-        tagID,
+        tagid,
       </if>
       <if test="tagname != null">
-        tagName,
+        tagname,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -137,10 +137,10 @@
     update tag
     <set>
       <if test="record.tagid != null">
-        tagID = #{record.tagid,jdbcType=VARCHAR},
+        tagid = #{record.tagid,jdbcType=VARCHAR},
       </if>
       <if test="record.tagname != null">
-        tagName = #{record.tagname,jdbcType=VARCHAR},
+        tagname = #{record.tagname,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -149,8 +149,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update tag
-    set tagID = #{record.tagid,jdbcType=VARCHAR},
-      tagName = #{record.tagname,jdbcType=VARCHAR}
+    set tagid = #{record.tagid,jdbcType=VARCHAR},
+      tagname = #{record.tagname,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -159,14 +159,14 @@
     update tag
     <set>
       <if test="tagname != null">
-        tagName = #{tagname,jdbcType=VARCHAR},
+        tagname = #{tagname,jdbcType=VARCHAR},
       </if>
     </set>
-    where tagID = #{tagid,jdbcType=VARCHAR}
+    where tagid = #{tagid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="find_friend.po.Tag">
     update tag
-    set tagName = #{tagname,jdbcType=VARCHAR}
-    where tagID = #{tagid,jdbcType=VARCHAR}
+    set tagname = #{tagname,jdbcType=VARCHAR}
+    where tagid = #{tagid,jdbcType=VARCHAR}
   </update>
 </mapper>

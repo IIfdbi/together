@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="find_friend.mapper.MessageMapper">
   <resultMap id="BaseResultMap" type="find_friend.po.Message">
-    <id column="messageID" jdbcType="VARCHAR" property="messageid" />
-    <result column="userID" jdbcType="VARCHAR" property="userid" />
+    <id column="messageid" jdbcType="VARCHAR" property="messageid" />
     <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    messageID, userID, content, createTime
+    messageid, content, createtime, userid
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.MessageExample" resultMap="BaseResultMap">
     select
@@ -94,11 +94,11 @@
     select 
     <include refid="Base_Column_List" />
     from message
-    where messageID = #{messageid,jdbcType=VARCHAR}
+    where messageid = #{messageid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from message
-    where messageID = #{messageid,jdbcType=VARCHAR}
+    where messageid = #{messageid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="find_friend.po.MessageExample">
     delete from message
@@ -107,39 +107,39 @@
     </if>
   </delete>
   <insert id="insert" parameterType="find_friend.po.Message">
-    insert into message (messageID, userID, content, 
-      createTime)
-    values (#{messageid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP})
+    insert into message (messageid, content, createtime, 
+      userid)
+    values (#{messageid,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{userid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.Message">
     insert into message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="messageid != null">
-        messageID,
-      </if>
-      <if test="userid != null">
-        userID,
+        messageid,
       </if>
       <if test="content != null">
         content,
       </if>
       <if test="createtime != null">
-        createTime,
+        createtime,
+      </if>
+      <if test="userid != null">
+        userid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="messageid != null">
         #{messageid,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
-      </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -153,16 +153,16 @@
     update message
     <set>
       <if test="record.messageid != null">
-        messageID = #{record.messageid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userid != null">
-        userID = #{record.userid,jdbcType=VARCHAR},
+        messageid = #{record.messageid,jdbcType=VARCHAR},
       </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=VARCHAR},
       </if>
       <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -171,10 +171,10 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update message
-    set messageID = #{record.messageid,jdbcType=VARCHAR},
-      userID = #{record.userid,jdbcType=VARCHAR},
+    set messageid = #{record.messageid,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP}
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      userid = #{record.userid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -182,23 +182,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.Message">
     update message
     <set>
-      <if test="userid != null">
-        userID = #{userid,jdbcType=VARCHAR},
-      </if>
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=VARCHAR},
       </if>
     </set>
-    where messageID = #{messageid,jdbcType=VARCHAR}
+    where messageid = #{messageid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="find_friend.po.Message">
     update message
-    set userID = #{userid,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP}
-    where messageID = #{messageid,jdbcType=VARCHAR}
+    set content = #{content,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=VARCHAR}
+    where messageid = #{messageid,jdbcType=VARCHAR}
   </update>
 </mapper>

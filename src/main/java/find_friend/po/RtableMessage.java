@@ -5,19 +5,19 @@ import java.io.Serializable;
 /**
  * @author 
  */
-public class TableMessageKey implements Serializable {
-    private String tableid;
+public class RtableMessage implements Serializable {
+    private String rtableid;
 
     private String messageid;
 
     private static final long serialVersionUID = 1L;
 
-    public String getTableid() {
-        return tableid;
+    public String getRtableid() {
+        return rtableid;
     }
 
-    public void setTableid(String tableid) {
-        this.tableid = tableid;
+    public void setRtableid(String rtableid) {
+        this.rtableid = rtableid;
     }
 
     public String getMessageid() {

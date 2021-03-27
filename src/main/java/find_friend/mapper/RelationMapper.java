@@ -4,7 +4,11 @@ import find_friend.po.Relation;
 import find_friend.po.RelationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Mapper
+@Repository
 public interface RelationMapper {
     long countByExample(RelationExample example);
 

@@ -9,11 +9,11 @@ import java.util.Date;
 public class Message implements Serializable {
     private String messageid;
 
-    private String userid;
-
     private String content;
 
     private Date createtime;
+
+    private String userid;
 
     private static final long serialVersionUID = 1L;
 
@@ -23,14 +23,6 @@ public class Message implements Serializable {
 
     public void setMessageid(String messageid) {
         this.messageid = messageid;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
     }
 
     public String getContent() {
@@ -47,5 +39,13 @@ public class Message implements Serializable {
 
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 }

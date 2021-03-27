@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="find_friend.mapper.TableUserMapper">
-  <resultMap id="BaseResultMap" type="find_friend.po.TableUser">
-    <id column="userID" jdbcType="VARCHAR" property="userid" />
-    <id column="tableID" jdbcType="VARCHAR" property="tableid" />
-    <id column="tablememberID" jdbcType="VARCHAR" property="tablememberid" />
+<mapper namespace="find_friend.mapper.RtableUserMapper">
+  <resultMap id="BaseResultMap" type="find_friend.po.RtableUser">
+    <id column="rtablememberid" jdbcType="VARCHAR" property="rtablememberid" />
     <result column="identity" jdbcType="VARCHAR" property="identity" />
-    <result column="ready" jdbcType="TINYINT" property="ready" />
-    <result column="joinTime" jdbcType="TIMESTAMP" property="jointime" />
     <result column="joined" jdbcType="TINYINT" property="joined" />
+    <result column="jointime" jdbcType="TIMESTAMP" property="jointime" />
+    <result column="ready" jdbcType="TINYINT" property="ready" />
+    <result column="rtableid" jdbcType="VARCHAR" property="rtableid" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,15 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    userID, tableID, tablememberID, identity, ready, joinTime, joined
+    rtablememberid, identity, joined, jointime, ready, rtableid, userid
   </sql>
-  <select id="selectByExample" parameterType="find_friend.po.TableUserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="find_friend.po.RtableUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from table_user
+    from rtable_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,112 +93,108 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="find_friend.po.TableUserKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from table_user
-    where userID = #{userid,jdbcType=VARCHAR}
-      and tableID = #{tableid,jdbcType=VARCHAR}
-      and tablememberID = #{tablememberid,jdbcType=VARCHAR}
+    from rtable_user
+    where rtablememberid = #{rtablememberid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="find_friend.po.TableUserKey">
-    delete from table_user
-    where userID = #{userid,jdbcType=VARCHAR}
-      and tableID = #{tableid,jdbcType=VARCHAR}
-      and tablememberID = #{tablememberid,jdbcType=VARCHAR}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from rtable_user
+    where rtablememberid = #{rtablememberid,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="find_friend.po.TableUserExample">
-    delete from table_user
+  <delete id="deleteByExample" parameterType="find_friend.po.RtableUserExample">
+    delete from rtable_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="find_friend.po.TableUser">
-    insert into table_user (userID, tableID, tablememberID, 
-      identity, ready, joinTime, 
-      joined)
-    values (#{userid,jdbcType=VARCHAR}, #{tableid,jdbcType=VARCHAR}, #{tablememberid,jdbcType=VARCHAR}, 
-      #{identity,jdbcType=VARCHAR}, #{ready,jdbcType=TINYINT}, #{jointime,jdbcType=TIMESTAMP}, 
-      #{joined,jdbcType=TINYINT})
+  <insert id="insert" parameterType="find_friend.po.RtableUser">
+    insert into rtable_user (rtablememberid, identity, joined, 
+      jointime, ready, rtableid, 
+      userid)
+    values (#{rtablememberid,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{joined,jdbcType=TINYINT}, 
+      #{jointime,jdbcType=TIMESTAMP}, #{ready,jdbcType=TINYINT}, #{rtableid,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="find_friend.po.TableUser">
-    insert into table_user
+  <insert id="insertSelective" parameterType="find_friend.po.RtableUser">
+    insert into rtable_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        userID,
-      </if>
-      <if test="tableid != null">
-        tableID,
-      </if>
-      <if test="tablememberid != null">
-        tablememberID,
+      <if test="rtablememberid != null">
+        rtablememberid,
       </if>
       <if test="identity != null">
         identity,
       </if>
-      <if test="ready != null">
-        ready,
-      </if>
-      <if test="jointime != null">
-        joinTime,
-      </if>
       <if test="joined != null">
         joined,
       </if>
+      <if test="jointime != null">
+        jointime,
+      </if>
+      <if test="ready != null">
+        ready,
+      </if>
+      <if test="rtableid != null">
+        rtableid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
-      </if>
-      <if test="tableid != null">
-        #{tableid,jdbcType=VARCHAR},
-      </if>
-      <if test="tablememberid != null">
-        #{tablememberid,jdbcType=VARCHAR},
+      <if test="rtablememberid != null">
+        #{rtablememberid,jdbcType=VARCHAR},
       </if>
       <if test="identity != null">
         #{identity,jdbcType=VARCHAR},
       </if>
-      <if test="ready != null">
-        #{ready,jdbcType=TINYINT},
+      <if test="joined != null">
+        #{joined,jdbcType=TINYINT},
       </if>
       <if test="jointime != null">
         #{jointime,jdbcType=TIMESTAMP},
       </if>
-      <if test="joined != null">
-        #{joined,jdbcType=TINYINT},
+      <if test="ready != null">
+        #{ready,jdbcType=TINYINT},
+      </if>
+      <if test="rtableid != null">
+        #{rtableid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="find_friend.po.TableUserExample" resultType="java.lang.Long">
-    select count(*) from table_user
+  <select id="countByExample" parameterType="find_friend.po.RtableUserExample" resultType="java.lang.Long">
+    select count(*) from rtable_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update table_user
+    update rtable_user
     <set>
-      <if test="record.userid != null">
-        userID = #{record.userid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.tableid != null">
-        tableID = #{record.tableid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.tablememberid != null">
-        tablememberID = #{record.tablememberid,jdbcType=VARCHAR},
+      <if test="record.rtablememberid != null">
+        rtablememberid = #{record.rtablememberid,jdbcType=VARCHAR},
       </if>
       <if test="record.identity != null">
         identity = #{record.identity,jdbcType=VARCHAR},
       </if>
+      <if test="record.joined != null">
+        joined = #{record.joined,jdbcType=TINYINT},
+      </if>
+      <if test="record.jointime != null">
+        jointime = #{record.jointime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.ready != null">
         ready = #{record.ready,jdbcType=TINYINT},
       </if>
-      <if test="record.jointime != null">
-        joinTime = #{record.jointime,jdbcType=TIMESTAMP},
+      <if test="record.rtableid != null">
+        rtableid = #{record.rtableid,jdbcType=VARCHAR},
       </if>
-      <if test="record.joined != null">
-        joined = #{record.joined,jdbcType=TINYINT},
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -206,46 +202,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update table_user
-    set userID = #{record.userid,jdbcType=VARCHAR},
-      tableID = #{record.tableid,jdbcType=VARCHAR},
-      tablememberID = #{record.tablememberid,jdbcType=VARCHAR},
+    update rtable_user
+    set rtablememberid = #{record.rtablememberid,jdbcType=VARCHAR},
       identity = #{record.identity,jdbcType=VARCHAR},
+      joined = #{record.joined,jdbcType=TINYINT},
+      jointime = #{record.jointime,jdbcType=TIMESTAMP},
       ready = #{record.ready,jdbcType=TINYINT},
-      joinTime = #{record.jointime,jdbcType=TIMESTAMP},
-      joined = #{record.joined,jdbcType=TINYINT}
+      rtableid = #{record.rtableid,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.TableUser">
-    update table_user
+  <update id="updateByPrimaryKeySelective" parameterType="find_friend.po.RtableUser">
+    update rtable_user
     <set>
       <if test="identity != null">
         identity = #{identity,jdbcType=VARCHAR},
       </if>
-      <if test="ready != null">
-        ready = #{ready,jdbcType=TINYINT},
-      </if>
-      <if test="jointime != null">
-        joinTime = #{jointime,jdbcType=TIMESTAMP},
-      </if>
       <if test="joined != null">
         joined = #{joined,jdbcType=TINYINT},
       </if>
+      <if test="jointime != null">
+        jointime = #{jointime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ready != null">
+        ready = #{ready,jdbcType=TINYINT},
+      </if>
+      <if test="rtableid != null">
+        rtableid = #{rtableid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
     </set>
-    where userID = #{userid,jdbcType=VARCHAR}
-      and tableID = #{tableid,jdbcType=VARCHAR}
-      and tablememberID = #{tablememberid,jdbcType=VARCHAR}
+    where rtablememberid = #{rtablememberid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="find_friend.po.TableUser">
-    update table_user
+  <update id="updateByPrimaryKey" parameterType="find_friend.po.RtableUser">
+    update rtable_user
     set identity = #{identity,jdbcType=VARCHAR},
+      joined = #{joined,jdbcType=TINYINT},
+      jointime = #{jointime,jdbcType=TIMESTAMP},
       ready = #{ready,jdbcType=TINYINT},
-      joinTime = #{jointime,jdbcType=TIMESTAMP},
-      joined = #{joined,jdbcType=TINYINT}
-    where userID = #{userid,jdbcType=VARCHAR}
-      and tableID = #{tableid,jdbcType=VARCHAR}
-      and tablememberID = #{tablememberid,jdbcType=VARCHAR}
+      rtableid = #{rtableid,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=VARCHAR}
+    where rtablememberid = #{rtablememberid,jdbcType=VARCHAR}
   </update>
 </mapper>
