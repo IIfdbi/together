@@ -6,6 +6,7 @@
     <result column="createuserid" jdbcType="VARCHAR" property="createuserid" />
     <result column="ddl" jdbcType="TIMESTAMP" property="ddl" />
     <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
     <result column="first_tag" jdbcType="VARCHAR" property="firstTag" />
     <result column="maxcount" jdbcType="SMALLINT" property="maxcount" />
     <result column="school" jdbcType="VARCHAR" property="school" />

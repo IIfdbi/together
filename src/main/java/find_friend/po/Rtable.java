@@ -1,12 +1,18 @@
 package find_friend.po;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author 
  */
+@Entity
+@Table(name = ("Rtable"))
 public class Rtable implements Serializable {
+    @Id
     private String rtableid;
 
     private Byte available;

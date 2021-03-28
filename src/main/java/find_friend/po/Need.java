@@ -1,21 +1,45 @@
 package find_friend.po;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author 
+ * @author
  */
 @Entity
 @Table(name = "Need")
-public class Need implements Serializable {
+public class Need extends NeedKey implements Serializable {
     @Id
-    String needid;
+    private String needid;
 
     private String createuserid;
+
+    private Date createtime;
+
+    @Override
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    @Override
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    private Short maxcount;
+
+    @Override
+    public String getNeedid() {
+        return needid;
+    }
+
+    @Override
+    public void setNeedid(String needid) {
+        this.needid = needid;
+    }
 
     private Date ddl;
 
@@ -23,23 +47,13 @@ public class Need implements Serializable {
 
     private String firstTag;
 
-    private Short maxcount;
-
-    private String school;
-
     private String secondTag;
 
     private Byte submitted;
 
+    private String school;
+
     private static final long serialVersionUID = 1L;
-
-    public String getNeedid() {
-        return needid;
-    }
-
-    public void setNeedid(String needid) {
-        this.needid = needid;
-    }
 
     public String getCreateuserid() {
         return createuserid;
@@ -47,6 +61,14 @@ public class Need implements Serializable {
 
     public void setCreateuserid(String createuserid) {
         this.createuserid = createuserid;
+    }
+
+    public Short getMaxcount() {
+        return maxcount;
+    }
+
+    public void setMaxcount(Short maxcount) {
+        this.maxcount = maxcount;
     }
 
     public Date getDdl() {
@@ -73,22 +95,6 @@ public class Need implements Serializable {
         this.firstTag = firstTag;
     }
 
-    public Short getMaxcount() {
-        return maxcount;
-    }
-
-    public void setMaxcount(Short maxcount) {
-        this.maxcount = maxcount;
-    }
-
-    public String getSchool() {
-        return school;
-    }
-
-    public void setSchool(String school) {
-        this.school = school;
-    }
-
     public String getSecondTag() {
         return secondTag;
     }
@@ -103,5 +109,13 @@ public class Need implements Serializable {
 
     public void setSubmitted(Byte submitted) {
         this.submitted = submitted;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 }

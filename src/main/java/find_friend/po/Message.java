@@ -1,19 +1,25 @@
 package find_friend.po;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author 
  */
+@Entity
+@Table(name = "Message")
 public class Message implements Serializable {
+    @Id
     private String messageid;
+
+    private String userid;
 
     private String content;
 
     private Date createtime;
-
-    private String userid;
 
     private static final long serialVersionUID = 1L;
 
@@ -23,6 +29,14 @@ public class Message implements Serializable {
 
     public void setMessageid(String messageid) {
         this.messageid = messageid;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getContent() {
@@ -39,13 +53,5 @@ public class Message implements Serializable {
 
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
     }
 }

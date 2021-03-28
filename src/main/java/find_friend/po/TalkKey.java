@@ -1,11 +1,17 @@
 package find_friend.po;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * @author 
  */
+@Entity
+@Table(name = "Talk")
 public class TalkKey implements Serializable {
+    @Id
     private String relationid;
 
     private String messageid;

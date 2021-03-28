@@ -125,72 +125,142 @@ public class NeedUserExample {
         }
 
         public Criteria andNeedidIsNull() {
-            addCriterion("needid is null");
+            addCriterion("needID is null");
             return (Criteria) this;
         }
 
         public Criteria andNeedidIsNotNull() {
-            addCriterion("needid is not null");
+            addCriterion("needID is not null");
             return (Criteria) this;
         }
 
         public Criteria andNeedidEqualTo(String value) {
-            addCriterion("needid =", value, "needid");
+            addCriterion("needID =", value, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidNotEqualTo(String value) {
-            addCriterion("needid <>", value, "needid");
+            addCriterion("needID <>", value, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidGreaterThan(String value) {
-            addCriterion("needid >", value, "needid");
+            addCriterion("needID >", value, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidGreaterThanOrEqualTo(String value) {
-            addCriterion("needid >=", value, "needid");
+            addCriterion("needID >=", value, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidLessThan(String value) {
-            addCriterion("needid <", value, "needid");
+            addCriterion("needID <", value, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidLessThanOrEqualTo(String value) {
-            addCriterion("needid <=", value, "needid");
+            addCriterion("needID <=", value, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidLike(String value) {
-            addCriterion("needid like", value, "needid");
+            addCriterion("needID like", value, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidNotLike(String value) {
-            addCriterion("needid not like", value, "needid");
+            addCriterion("needID not like", value, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidIn(List<String> values) {
-            addCriterion("needid in", values, "needid");
+            addCriterion("needID in", values, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidNotIn(List<String> values) {
-            addCriterion("needid not in", values, "needid");
+            addCriterion("needID not in", values, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidBetween(String value1, String value2) {
-            addCriterion("needid between", value1, value2, "needid");
+            addCriterion("needID between", value1, value2, "needid");
             return (Criteria) this;
         }
 
         public Criteria andNeedidNotBetween(String value1, String value2) {
-            addCriterion("needid not between", value1, value2, "needid");
+            addCriterion("needID not between", value1, value2, "needid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridIsNull() {
+            addCriterion("userID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridIsNotNull() {
+            addCriterion("userID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridEqualTo(String value) {
+            addCriterion("userID =", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotEqualTo(String value) {
+            addCriterion("userID <>", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridGreaterThan(String value) {
+            addCriterion("userID >", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridGreaterThanOrEqualTo(String value) {
+            addCriterion("userID >=", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridLessThan(String value) {
+            addCriterion("userID <", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridLessThanOrEqualTo(String value) {
+            addCriterion("userID <=", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridLike(String value) {
+            addCriterion("userID like", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotLike(String value) {
+            addCriterion("userID not like", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridIn(List<String> values) {
+            addCriterion("userID in", values, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotIn(List<String> values) {
+            addCriterion("userID not in", values, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridBetween(String value1, String value2) {
+            addCriterion("userID between", value1, value2, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotBetween(String value1, String value2) {
+            addCriterion("userID not between", value1, value2, "userid");
             return (Criteria) this;
         }
 
@@ -251,76 +321,6 @@ public class NeedUserExample {
 
         public Criteria andJoinedNotBetween(Byte value1, Byte value2) {
             addCriterion("joined not between", value1, value2, "joined");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridIsNull() {
-            addCriterion("userid is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridIsNotNull() {
-            addCriterion("userid is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridEqualTo(String value) {
-            addCriterion("userid =", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridNotEqualTo(String value) {
-            addCriterion("userid <>", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridGreaterThan(String value) {
-            addCriterion("userid >", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridGreaterThanOrEqualTo(String value) {
-            addCriterion("userid >=", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridLessThan(String value) {
-            addCriterion("userid <", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridLessThanOrEqualTo(String value) {
-            addCriterion("userid <=", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridLike(String value) {
-            addCriterion("userid like", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridNotLike(String value) {
-            addCriterion("userid not like", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridIn(List<String> values) {
-            addCriterion("userid in", values, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridNotIn(List<String> values) {
-            addCriterion("userid not in", values, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridBetween(String value1, String value2) {
-            addCriterion("userid between", value1, value2, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridNotBetween(String value1, String value2) {
-            addCriterion("userid not between", value1, value2, "userid");
             return (Criteria) this;
         }
     }

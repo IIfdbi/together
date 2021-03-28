@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * @author 
  */
+
 public class Talk implements Serializable {
     private String relationid;
 
