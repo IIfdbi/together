@@ -31,16 +31,16 @@ public class NeedController extends BaseController{
 
     //发布需求
     @PostMapping(value = "/release")
-    public ResponseEntity<ResultModel> release(HttpServletRequest request, Need need) throws ServletException {
+    public String release(HttpServletRequest request, Need need) throws ServletException {
         if (getUserSession(request)==null){
-            return new ResponseEntity<>(ResultModel.error(HttpStatus.BAD_GATEWAY,"用户未登录"), HttpStatus.BAD_GATEWAY);
+            return null;
         }
         need.setNeedid(UUID.randomUUID().toString().replaceAll("-", ""));
         need.setSubmitted(Byte.parseByte("1"));
         need.setCreatetime(new Date());
         need.setCreateuserid(getUserSession(request).getUserid());
         needRepository.save(need);
-        return new ResponseEntity<>(ResultModel.ok("需求发布成功"), HttpStatus.OK);
+        return need.getNeedid();
     }
 
     //创建草稿
