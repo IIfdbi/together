@@ -27,11 +27,11 @@ public class User implements Serializable {
     public interface RESET_PASSWORD {
     }
 
-    @NotBlank(message = "用户名称不能为空", groups = {CREATE.class, LOGIN.class,RESET_PASSWORD.class})
+    //@NotBlank(message = "用户名称不能为空", groups = {CREATE.class, LOGIN.class,RESET_PASSWORD.class})
     @Size(min = 3, max = 32, message = "名字长度必须在3和32之间", groups = {CREATE.class, LOGIN.class,RESET_PASSWORD.class})
     private String username;
 
-    @NotBlank(message = "密码不能为空", groups = {CREATE.class, LOGIN.class, RESET_PASSWORD.class})
+    //@NotBlank(message = "密码不能为空", groups = {CREATE.class, LOGIN.class, RESET_PASSWORD.class})
     @Size(min = 6, max = 16, message = "密码长度必须在6和16之间", groups = {CREATE.class, LOGIN.class, RESET_PASSWORD.class})
     private String pwd;
 
