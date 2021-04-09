@@ -132,23 +132,35 @@ public class RtableController extends BaseController{
 
     //获取用户当前学校所有圆桌-创建时间排序
     @GetMapping(value = "/getSchoolRtablesByCT")
-    public List<Rtable> getSchoolRTableByCT(HttpServletRequest request){
+    public Page<Rtable> getSchoolRTableByCT(HttpServletRequest request){
         int page = 0,size = 10;
         Sort sort = new Sort(Sort.Direction.DESC,"createtime");
         Pageable pageable = new PageRequest(page,size,sort);
         String school = getUserSession(request).getSchool();
-        List<Rtable> RTables = rtableRepository.findAll();
+        Page<Rtable> RTables = null;
+        if(school.equals("")){
+            RTables = rtableRepository.findAll(pageable);
+        }
+        else {
+            RTables = rtableRepository.findBySchool(school, pageable);
+        }
         return RTables;
     }
 
     //获取用户当前学校所有圆桌-截止时间排序
     @GetMapping(value = "/getSchoolRtablesByDDL")
-    public List<Rtable> getSchoolRTableByDDL(HttpServletRequest request){
+    public Page<Rtable> getSchoolRTableByDDL(HttpServletRequest request){
         int page = 0,size = 10;
         Sort sort = new Sort(Sort.Direction.DESC,"ddl");
         Pageable pageable = new PageRequest(page,size,sort);
         String school = getUserSession(request).getSchool();
-        List<Rtable> RTables = rtableRepository.findAll();
+        Page<Rtable> RTables = null;
+        if(school.equals("")){
+            RTables = rtableRepository.findAll(pageable);
+        }
+        else {
+            RTables = rtableRepository.findBySchool(school, pageable);
+        }
         return RTables;
     }
 
@@ -159,7 +171,13 @@ public class RtableController extends BaseController{
         Sort sort = new Sort(Sort.Direction.DESC,"createtime");
         Pageable pageable = new PageRequest(page,size,sort);
         String school = getUserSession(request).getSchool();
-        Page<Rtable> RTables = rtableRepository.search(keyWord,school,pageable);
+        Page<Rtable> RTables = null;
+        if(school.equals("")){
+            RTables = rtableRepository.searchWithoutSchool(keyWord,pageable);
+        }
+        else {
+            RTables = rtableRepository.search(keyWord,school,pageable);
+        }
         return RTables;
     }
 

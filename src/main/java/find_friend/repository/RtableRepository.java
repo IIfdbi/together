@@ -17,6 +17,9 @@ public interface RtableRepository extends JpaRepository<Rtable, String> {
 
     Page<Rtable> findBySchool(String school, Pageable pageable);
 
+    @Query("select u from Rtable u where u.rtablename like ?1")
+    Page<Rtable> searchWithoutSchool(@Param("searchText") String searchText,Pageable pageable);
+
     @Query("select u from Rtable u where u.school = ?2 and u.rtablename like ?1")
     Page<Rtable> search(@Param("searchText") String searchText,@Param("school")String school,Pageable pageable);
 
