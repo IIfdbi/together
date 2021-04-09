@@ -132,23 +132,23 @@ public class RtableController extends BaseController{
 
     //获取用户当前学校所有圆桌-创建时间排序
     @GetMapping(value = "/getSchoolRtablesByCT")
-    public Page<Rtable> getSchoolRTableByCT(HttpServletRequest request){
+    public List<Rtable> getSchoolRTableByCT(HttpServletRequest request){
         int page = 0,size = 10;
         Sort sort = new Sort(Sort.Direction.DESC,"createtime");
         Pageable pageable = new PageRequest(page,size,sort);
         String school = getUserSession(request).getSchool();
-        Page<Rtable> RTables = rtableRepository.findBySchool(school,pageable);
+        List<Rtable> RTables = rtableRepository.findAll();
         return RTables;
     }
 
     //获取用户当前学校所有圆桌-截止时间排序
     @GetMapping(value = "/getSchoolRtablesByDDL")
-    public Page<Rtable> getSchoolRTableByDDL(HttpServletRequest request){
+    public List<Rtable> getSchoolRTableByDDL(HttpServletRequest request){
         int page = 0,size = 10;
         Sort sort = new Sort(Sort.Direction.DESC,"ddl");
         Pageable pageable = new PageRequest(page,size,sort);
         String school = getUserSession(request).getSchool();
-        Page<Rtable> RTables = rtableRepository.findBySchool(school,pageable);
+        List<Rtable> RTables = rtableRepository.findAll();
         return RTables;
     }
 
