@@ -27,8 +27,6 @@ public class Rtable implements Serializable {
 
     private Short maxNumber;
 
-    private String needid;
-
     private Short nowNumber;
 
     private String photo;
@@ -36,6 +34,18 @@ public class Rtable implements Serializable {
     private String rtablename;
 
     private String school;
+
+    private String needid;
+
+    private String first_tag;
+
+    public String getFirst_tag() {
+        return first_tag;
+    }
+
+    public void setFirst_tag(String first_tag) {
+        this.first_tag = first_tag;
+    }
 
     private static final long serialVersionUID = 1L;
 

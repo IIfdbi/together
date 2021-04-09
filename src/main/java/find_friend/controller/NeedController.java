@@ -29,6 +29,12 @@ public class NeedController extends BaseController{
     @Autowired
     private NeedRepository needRepository;
 
+    //获取单个需求
+    @GetMapping(value = "/getNeed")
+    public Need getNeed(String needid){
+        return needRepository.findByNeedid(needid);
+    }
+
     //发布需求
     @PostMapping(value = "/release")
     public String release(HttpServletRequest request, Need need) throws ServletException {
@@ -111,4 +117,5 @@ public class NeedController extends BaseController{
         }
         return undos;
     }
+
 }

@@ -14,6 +14,7 @@
     <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="rtablename" jdbcType="VARCHAR" property="rtablename" />
     <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="first_tag" jdbcType="VARCHAR" property="first_tag" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     rtableid, available, createtime, ddl, detail, done, max_number, needid, now_number, 
-    photo, rtablename, school
+    photo, rtablename, school, first_tag
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.RtableExample" resultMap="BaseResultMap">
     select
@@ -119,12 +120,12 @@
     insert into rtable (rtableid, available, createtime, 
       ddl, detail, done, 
       max_number, needid, now_number, 
-      photo, rtablename, school
+      photo, rtablename, school, first_tag
       )
     values (#{rtableid,jdbcType=VARCHAR}, #{available,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, 
       #{ddl,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR}, #{done,jdbcType=TINYINT}, 
       #{maxNumber,jdbcType=SMALLINT}, #{needid,jdbcType=VARCHAR}, #{nowNumber,jdbcType=SMALLINT}, 
-      #{photo,jdbcType=VARCHAR}, #{rtablename,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}
+      #{photo,jdbcType=VARCHAR}, #{rtablename,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{first_tag,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.Rtable">
@@ -166,6 +167,9 @@
       <if test="school != null">
         school,
       </if>
+      <if test="first_tag != null">
+        first_tag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="rtableid != null">
@@ -203,6 +207,9 @@
       </if>
       <if test="school != null">
         #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="first_tag != null">
+        #{first_tag,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -251,6 +258,9 @@
       <if test="record.school != null">
         school = #{record.school,jdbcType=VARCHAR},
       </if>
+      <if test="record.first_tag != null">
+        first_tag = #{record.first_tag,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -269,7 +279,8 @@
       now_number = #{record.nowNumber,jdbcType=SMALLINT},
       photo = #{record.photo,jdbcType=VARCHAR},
       rtablename = #{record.rtablename,jdbcType=VARCHAR},
-      school = #{record.school,jdbcType=VARCHAR}
+      school = #{record.school,jdbcType=VARCHAR},
+      first_tag = #{record.first_tag,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -310,6 +321,9 @@
       <if test="school != null">
         school = #{school,jdbcType=VARCHAR},
       </if>
+      <if test="first_tag != null">
+        first_tag = #{first_tag,jdbcType=VARCHAR},
+      </if>
     </set>
     where rtableid = #{rtableid,jdbcType=VARCHAR}
   </update>
@@ -325,7 +339,8 @@
       now_number = #{nowNumber,jdbcType=SMALLINT},
       photo = #{photo,jdbcType=VARCHAR},
       rtablename = #{rtablename,jdbcType=VARCHAR},
-      school = #{school,jdbcType=VARCHAR}
+      school = #{school,jdbcType=VARCHAR},
+      first_tag = #{first_tag,jdbcType=VARCHAR}
     where rtableid = #{rtableid,jdbcType=VARCHAR}
   </update>
 </mapper>

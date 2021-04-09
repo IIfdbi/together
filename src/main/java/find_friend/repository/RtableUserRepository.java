@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface RtableUserRepository extends JpaRepository<RtableUser, String> {
     List<RtableUser> findByUserid(String userid);
+    List<RtableUser> findByRtableid(String rtableid);
 }
