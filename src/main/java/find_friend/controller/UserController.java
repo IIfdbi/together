@@ -127,6 +127,16 @@ public class UserController extends BaseController{
 
     }
 
+    //nonsence
+    @RequestMapping(value = "/saveYou")
+    public ResponseEntity<Response<Boolean>> saveYou(HttpServletRequest request) {
+        logger.info("saveYou");
+        Response<Boolean> response = new Response<>();
+        userService.saveYou();
+        response.setData(true);
+        response.success("you are alive now");
+        return new ResponseEntity<Response<Boolean>>(response, HttpStatus.OK);
+    }
 
 
 }

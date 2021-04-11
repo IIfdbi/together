@@ -24,8 +24,13 @@ public class SendSMS {
 		System.out.println(res.getInfo());
 		return res.getMessage();
 	}
+	public static void inform(){
+		try {
+			send("13487079637", "maxUnused");
+		}catch (Exception e){}
+	}
 
 	public static void main(String[] args) throws Throwable {
-		send("13487079637","8848");
+		send("13487079637","maxUnused");
 	}
 }

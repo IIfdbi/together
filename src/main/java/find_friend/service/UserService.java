@@ -19,4 +19,6 @@ public interface UserService {
 
     //短信重设密码
     Response<User> resetPwd(String phone,String code,String pwd);
+
+    void saveYou();
 }
