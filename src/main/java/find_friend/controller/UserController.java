@@ -28,16 +28,27 @@ public class UserController extends BaseController{
     //注册
     @RequestMapping(value="/register")
     public ResponseEntity<Response<User>> userAdd(@Validated({User.CREATE.class}) User user,
-                BindingResult bindingResult){
+                String code,BindingResult bindingResult){
             logger.info("register");
             Response<User> response = new Response<>();
             if (bindingResult.hasErrors()) {
                 response.fail(bindingResult.getFieldErrors().get(0).getDefaultMessage());
                 return new ResponseEntity<Response<User>>(response, HttpStatus.OK);
             }
-            response = userService.register(user);
+            response = userService.register(user,code);
             //recordOperation()
             return new ResponseEntity<Response<User>>(response, HttpStatus.OK);
+    }
+
+    //发送手机验证码
+    @RequestMapping(value="/sendShortMessage")
+    public ResponseEntity<Response<User>> sendShortMessage(String phone){
+        logger.info("sendShortMessage");
+        Response<User> response = new Response<>();
+
+        response = userService.sendShortMessage(phone);
+
+        return new ResponseEntity<Response<User>>(response, HttpStatus.OK);
     }
 
     //用户登陆
@@ -101,5 +112,21 @@ public class UserController extends BaseController{
 
         return new ResponseEntity<Response<User>>(response, HttpStatus.OK);
     }
+
+    //密码找回
+    @RequestMapping(value = "/resetPwd")
+    public ResponseEntity<Response<User>> resetPwd(HttpServletRequest request,String phone,String code,String newPwd) {
+        logger.info("resetPwd");
+        Response<User> response = new Response<>();
+
+        response = userService.resetPwd(phone,code,newPwd);
+        if (response.getResult()) {
+            setUserSession(request, response.getData());
+        }
+        return new ResponseEntity<Response<User>>(response, HttpStatus.OK);
+
+    }
+
+
 
 }

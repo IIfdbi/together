@@ -37,7 +37,7 @@ public class User implements Serializable {
 
     private String school;
 
-    private String department;
+    private String phone;
 
     private String nickname;
 
@@ -81,12 +81,12 @@ public class User implements Serializable {
         this.school = school;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getNickname() {

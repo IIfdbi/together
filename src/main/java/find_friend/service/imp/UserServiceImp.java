@@ -1,16 +1,23 @@
 package find_friend.service.imp;
 
+import find_friend.mapper.KeyValueMapper;
 import find_friend.mapper.UserMapper;
+import find_friend.po.KeyValue;
+import find_friend.po.KeyValueExample;
 import find_friend.po.User;
 import find_friend.po.UserExample;
 import find_friend.service.UserService;
 import find_friend.utils.MD5Util;
+import find_friend.utils.RandomUtil;
+import find_friend.utils.sendcloud.SendSMS;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import find_friend.utils.Response;
 import org.springframework.util.CollectionUtils;
 
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,8 +26,10 @@ public class UserServiceImp implements UserService{
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private KeyValueMapper keyValueMapper;
 
-    public Response<User> register(User user) {
+    public Response<User> register(User user,String code) {
         Response<User> response = new Response<>();
 
         String name=user.getUsername();
@@ -28,9 +37,30 @@ public class UserServiceImp implements UserService{
         if(userNameExist(name)==true){
             return response.fail("用户名已存在");
         }
+
+        //验证验证码
+        KeyValueExample keyValueExample=new KeyValueExample();
+        keyValueExample.or().andPhoneEqualTo(user.getPhone()).andCodeEqualTo(Integer.valueOf(code)).andStateEqualTo(new Byte("1"));
+        List<KeyValue> list = keyValueMapper.selectByExample(keyValueExample);
+        if (CollectionUtils.isEmpty(list)) {
+            return response.fail("短信验证码不正确");
+        }
+        KeyValue keyValue=list.get(0);
+        Date date=keyValue.getUpdateTime();
+        Calendar gmtExpired = Calendar.getInstance();
+        gmtExpired.setTime(date);
+        Calendar now = Calendar.getInstance();
+        if (now.after(gmtExpired)) {
+            return response.fail("短信验证码已过期");
+        }
+        keyValue.setState(new Byte("2"));
+        keyValueMapper.updateByExample(keyValue,keyValueExample);
+
+        //创建用户
         user.setUserid(MD5Util.getMD5(new Date().toString()+user.getUsername()));
         user.setCreatetime(new Date());
         user.setPwd(MD5Util.getMD5(user.getPwd()));
+        user.setSchool("武汉大学");
         int n = userMapper.insert(user);
         if (n <= 0) return response.fail("用户创建失败");
 
@@ -55,10 +85,6 @@ public class UserServiceImp implements UserService{
 
         User u = list.get(0);
 
-        /** 验证用户是否激活邮箱 */
-//        if (u.getEmailvalid() != true) {
-//            return response.fail("邮件地址未验证");
-//        }
 
         u.setPwd("");
         response.setData(u);
@@ -88,6 +114,9 @@ public class UserServiceImp implements UserService{
         if(user.getPhoto()!=null){
 
         }
+        if(user.getPwd()!=null){
+            user.setPwd(MD5Util.getMD5(user.getPwd()));
+        }
         UserExample userExample = new UserExample();
         userExample.or().andUseridEqualTo(user.getUserid());
 
@@ -97,5 +126,72 @@ public class UserServiceImp implements UserService{
         } else {
             return response.fail("修改失败");
         }
+    }
+
+    public Response<User> resetPwd(String phone,String code,String pwd){
+        Response<User> response = new Response<>();
+
+        //验证验证码
+        KeyValueExample keyValueExample=new KeyValueExample();
+        keyValueExample.or().andPhoneEqualTo(phone).andCodeEqualTo(Integer.valueOf(code)).andStateEqualTo(new Byte("1"));
+        List<KeyValue> list = keyValueMapper.selectByExample(keyValueExample);
+        if (CollectionUtils.isEmpty(list)) {
+            return response.fail("短信验证码不正确");
+        }
+        KeyValue keyValue=list.get(0);
+        Date date=keyValue.getUpdateTime();
+        Calendar gmtExpired = Calendar.getInstance();
+        gmtExpired.setTime(date);
+        Calendar now = Calendar.getInstance();
+        if (now.after(gmtExpired)) {
+            return response.fail("短信验证码已过期");
+        }
+        keyValue.setState(new Byte("2"));
+        keyValueMapper.updateByExample(keyValue,keyValueExample);
+
+        //密码修改
+        UserExample example=new UserExample();
+        example.or().andPhoneEqualTo(phone);
+        List<User>userList=userMapper.selectByExample(example);
+        if(userList.size()<1)return response.fail("该手机号未注册");
+        User user=userList.get(0);
+        user.setPwd(MD5Util.getMD5(pwd));
+        userMapper.updateByExample(user,example);
+        return response.success("密码修改成功\n");
+    }
+
+    public Response<User> sendShortMessage(String phone){
+        Response<User> response = new Response<>();
+        String code = RandomUtil.getRandom(6);
+        try {
+            //String back=SendSMS.send(phone, code);
+            String back="请求成功";
+            if(!back.equals("请求成功")){
+                return response.fail("短信验证码发送失败 "+back);
+            }
+        }catch (Exception e){
+            return response.fail("短信验证码发送失败");
+        }
+
+        KeyValue kv = new KeyValue();
+        kv.setCode(Integer.valueOf(code));
+        kv.setPhone(phone);
+        kv.setCreateTime(new Date());
+        kv.setUpdateTime(new Date(System.currentTimeMillis()+30 * 60*1000));//30分钟后失效
+        kv.setState(new Byte("1"));
+        KeyValueExample example=new KeyValueExample();
+        example.or().andPhoneEqualTo(phone).andStateEqualTo(new Byte("1"));
+        List<KeyValue>list=keyValueMapper.selectByExample(example);
+        if(list.size()>0) {
+            for(int i=0;i<list.size();i++) {
+                KeyValue kv2 = list.get(0);
+                kv2.setState(new Byte("2"));
+                keyValueMapper.updateByExample(kv2, example);
+            }
+        }
+        int nn = keyValueMapper.insert(kv);
+        if (nn <= 0) return response.fail("短信验证码发送失败");
+
+        return response.success("短信验证码发送成功");
     }
 }

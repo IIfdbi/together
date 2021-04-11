@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="find_friend.po.User">
     <id column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="hobby" jdbcType="VARCHAR" property="hobby" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    userid, createtime, department, hobby, nickname, photo, pwd, school, username
+    userid, createtime, phone, hobby, nickname, photo, pwd, school, username
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.UserExample" resultMap="BaseResultMap">
     select
@@ -112,11 +112,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="find_friend.po.User">
-    insert into user (userid, createtime, department, 
+    insert into user (userid, createtime, phone, 
       hobby, nickname, photo, 
       pwd, school, username
       )
-    values (#{userid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{department,jdbcType=VARCHAR}, 
+    values (#{userid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, 
       #{hobby,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
       #{pwd,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}
       )
@@ -130,8 +130,8 @@
       <if test="createtime != null">
         createtime,
       </if>
-      <if test="department != null">
-        department,
+      <if test="phone != null">
+        phone,
       </if>
       <if test="hobby != null">
         hobby,
@@ -159,8 +159,8 @@
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
       </if>
       <if test="hobby != null">
         #{hobby,jdbcType=VARCHAR},
@@ -197,8 +197,8 @@
       <if test="record.createtime != null">
         createtime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=VARCHAR},
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.hobby != null">
         hobby = #{record.hobby,jdbcType=VARCHAR},
@@ -227,7 +227,7 @@
     update user
     set userid = #{record.userid,jdbcType=VARCHAR},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      department = #{record.department,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
       hobby = #{record.hobby,jdbcType=VARCHAR},
       nickname = #{record.nickname,jdbcType=VARCHAR},
       photo = #{record.photo,jdbcType=VARCHAR},
@@ -244,8 +244,8 @@
       <if test="createtime != null">
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=VARCHAR},
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="hobby != null">
         hobby = #{hobby,jdbcType=VARCHAR},
@@ -271,7 +271,7 @@
   <update id="updateByPrimaryKey" parameterType="find_friend.po.User">
     update user
     set createtime = #{createtime,jdbcType=TIMESTAMP},
-      department = #{department,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
       hobby = #{hobby,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
       photo = #{photo,jdbcType=VARCHAR},
