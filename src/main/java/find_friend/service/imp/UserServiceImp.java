@@ -176,7 +176,7 @@ public class UserServiceImp implements UserService{
         String code = RandomUtil.getRandom(6);
         try {
             String back="";
-            if(SMScount<1)
+            if(SMScount<20)
             back=SendSMS.send(phone, code);
             else {
                 back = "请求成功";
