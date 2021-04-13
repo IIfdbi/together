@@ -1,6 +1,7 @@
 package find_friend.controller;
 
 import find_friend.po.Message;
+import find_friend.po.User;
 import find_friend.service.MessageService;
 import find_friend.utils.Response;
 import org.slf4j.Logger;
@@ -26,9 +27,14 @@ public class MessageController extends BaseController{
 
 //    保存消息
         @RequestMapping(value="/saveMessage")
-    public ResponseEntity<Response<Boolean>> sendShortMessage(Message message,String tableid){
+    public ResponseEntity<Response<Boolean>> sendShortMessage(HttpServletRequest request,Message message,String tableid){
         logger.info("saveMessage");
         Response<Boolean> response = new Response<Boolean>();
+            if (getUserSession(request)==null){
+                response.fail("请先登录");
+                return new ResponseEntity<Response<Boolean>>(response, HttpStatus.OK);
+            }
+            message.setUserid(getUserSession(request).getUserid());
 
         response = messageService.saveMessage(message,tableid);
 
@@ -37,9 +43,15 @@ public class MessageController extends BaseController{
 
 //    获取当前圆桌最后一条消息及当前未读消息个数接口
     @RequestMapping(value="/getLatest")
-    public ResponseEntity<Response<String>> getLatest(String userid,String tableid){
+    public ResponseEntity<Response<String>> getLatest(HttpServletRequest request,String tableid){
         logger.info("getLatest");
         Response<String> response = new Response<String>();
+
+        if (getUserSession(request)==null){
+            response.fail("请先登录");
+            return new ResponseEntity<Response<String>>(response, HttpStatus.OK);
+        }
+        String userid=getUserSession(request).getUserid();
 
         response = messageService.getLatest(userid,tableid);
 
@@ -48,10 +60,14 @@ public class MessageController extends BaseController{
 
 //    清除未读
     @RequestMapping(value="/clearUnread")
-    public ResponseEntity<Response<Boolean>> clearUnread(String userid,String tableid){
+    public ResponseEntity<Response<Boolean>> clearUnread(HttpServletRequest request,String tableid){
         logger.info("getLatest");
         Response<Boolean> response = new Response<Boolean>();
-
+        if (getUserSession(request)==null){
+            response.fail("请先登录");
+            return new ResponseEntity<Response<Boolean>>(response, HttpStatus.OK);
+        }
+        String userid=getUserSession(request).getUserid();
         response = messageService.clearUnread(userid,tableid);
 
         return new ResponseEntity<Response<Boolean>>(response, HttpStatus.OK);
@@ -59,10 +75,13 @@ public class MessageController extends BaseController{
 
 //    获取圆桌所有消息
     @RequestMapping(value="/getAllTableMessage")
-    public ResponseEntity<Response<ArrayList<Message>>> clearUnread(String tableid){
+    public ResponseEntity<Response<ArrayList<Message>>> getAllTableMessage(HttpServletRequest request,String tableid){
         logger.info("getAllTableMessage");
         Response<ArrayList<Message>> response = new Response<ArrayList<Message>>();
-
+        if (getUserSession(request)==null){
+            response.fail("请先登录");
+            return new ResponseEntity<Response<ArrayList<Message>>>(response, HttpStatus.OK);
+        }
         response = messageService.getAllTableMessage(tableid);
 
         return new ResponseEntity<Response<ArrayList<Message>>>(response, HttpStatus.OK);

@@ -35,7 +35,6 @@ public class MessageServiceImp implements MessageService {
             return response.fail("message缺少字段");
         }
 
-
         RtableUserExample example=new RtableUserExample();
         example.or().andRtableidEqualTo(tableID);
         List<RtableUser> list=rtableUserMapper.selectByExample(example);
@@ -47,11 +46,6 @@ public class MessageServiceImp implements MessageService {
             response.setData(false);
             return response.fail("此用户不是此圆桌的人");
         }
-        for(RtableUser rtableUser:list){
-            rtableUser.setUnreadmessage(rtableUser.getUnreadmessage()+1);
-            rtableUser.setLatestmessageid(message.getMessageid());
-            rtableUserMapper.updateByPrimaryKey(rtableUser);
-        }
 
         message.setCreatetime(new Date());
         int ram= new Random().nextInt();
@@ -62,6 +56,16 @@ public class MessageServiceImp implements MessageService {
         rtableMessage.setMessageid(message.getMessageid());
         rtableMessage.setRtableid(tableID);
         rtableMessageMapper.insert(rtableMessage);
+
+
+        for(RtableUser rtableUser:list){
+            if(rtableUser.getUnreadmessage()==null)rtableUser.setUnreadmessage(1);
+            else rtableUser.setUnreadmessage(rtableUser.getUnreadmessage()+1);
+            rtableUser.setLatestmessageid(message.getMessageid());
+            rtableUserMapper.updateByPrimaryKey(rtableUser);
+        }
+
+
 
         response.setData(true);
         return response;
@@ -78,16 +82,22 @@ public class MessageServiceImp implements MessageService {
             return response.fail("未找到匹配的圆桌用户");
         }
         RtableUser user=list.get(0);
-        String result=user.getUnreadmessage().toString()+"-";
-        MessageExample messageExample=new MessageExample();
-        messageExample.or().andMessageidEqualTo(user.getLatestmessageid());
-        List<Message>messageList=messageMapper.selectByExample(messageExample);
-        if(messageList.size()<1){
-            response.setData("");
-            response.fail("未找到最新一条消息");
+        String result="";
+        if(user.getUnreadmessage()!=null) {
+            result = user.getUnreadmessage().toString() + "-";
         }
-        Message message=messageList.get(0);
-        result+=message.getContent();
+        else {
+            result = "0-";
+        }
+        if(user.getLatestmessageid()!=null) {
+            MessageExample messageExample = new MessageExample();
+            messageExample.or().andMessageidEqualTo(user.getLatestmessageid());
+            List<Message> messageList = messageMapper.selectByExample(messageExample);
+            if (messageList.size() > 0) {
+                Message message = messageList.get(0);
+                result += message.getContent();
+            }
+        }
 
         response.setData(result);
         return response;
