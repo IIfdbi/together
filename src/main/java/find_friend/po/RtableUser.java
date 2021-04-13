@@ -1,11 +1,11 @@
 package find_friend.po;
 
+import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
-
 /**
  * @author 
  */
@@ -26,6 +26,10 @@ public class RtableUser implements Serializable {
     private String rtableid;
 
     private String userid;
+
+    private Integer unreadmessage;
+
+    private String latestmessageid;
 
     private static final long serialVersionUID = 1L;
 
@@ -83,5 +87,21 @@ public class RtableUser implements Serializable {
 
     public void setUserid(String userid) {
         this.userid = userid;
+    }
+
+    public Integer getUnreadmessage() {
+        return unreadmessage;
+    }
+
+    public void setUnreadmessage(Integer unreadmessage) {
+        this.unreadmessage = unreadmessage;
+    }
+
+    public String getLatestmessageid() {
+        return latestmessageid;
+    }
+
+    public void setLatestmessageid(String latestmessageid) {
+        this.latestmessageid = latestmessageid;
     }
 }

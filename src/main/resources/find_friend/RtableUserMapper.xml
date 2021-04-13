@@ -9,6 +9,8 @@
     <result column="ready" jdbcType="TINYINT" property="ready" />
     <result column="rtableid" jdbcType="VARCHAR" property="rtableid" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="unreadMessage" jdbcType="INTEGER" property="unreadmessage" />
+    <result column="latestMessageId" jdbcType="VARCHAR" property="latestmessageid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    rtablememberid, identity, joined, jointime, ready, rtableid, userid
+    rtablememberid, identity, joined, jointime, ready, rtableid, userid, unreadMessage, 
+    latestMessageId
   </sql>
   <select id="selectByExample" parameterType="find_friend.po.RtableUserExample" resultMap="BaseResultMap">
     select
@@ -112,10 +115,12 @@
   <insert id="insert" parameterType="find_friend.po.RtableUser">
     insert into rtable_user (rtablememberid, identity, joined, 
       jointime, ready, rtableid, 
-      userid)
+      userid, unreadMessage, latestMessageId
+      )
     values (#{rtablememberid,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{joined,jdbcType=TINYINT}, 
       #{jointime,jdbcType=TIMESTAMP}, #{ready,jdbcType=TINYINT}, #{rtableid,jdbcType=VARCHAR}, 
-      #{userid,jdbcType=VARCHAR})
+      #{userid,jdbcType=VARCHAR}, #{unreadmessage,jdbcType=INTEGER}, #{latestmessageid,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="find_friend.po.RtableUser">
     insert into rtable_user
@@ -141,6 +146,12 @@
       <if test="userid != null">
         userid,
       </if>
+      <if test="unreadmessage != null">
+        unreadMessage,
+      </if>
+      <if test="latestmessageid != null">
+        latestMessageId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="rtablememberid != null">
@@ -163,6 +174,12 @@
       </if>
       <if test="userid != null">
         #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="unreadmessage != null">
+        #{unreadmessage,jdbcType=INTEGER},
+      </if>
+      <if test="latestmessageid != null">
+        #{latestmessageid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -196,6 +213,12 @@
       <if test="record.userid != null">
         userid = #{record.userid,jdbcType=VARCHAR},
       </if>
+      <if test="record.unreadmessage != null">
+        unreadMessage = #{record.unreadmessage,jdbcType=INTEGER},
+      </if>
+      <if test="record.latestmessageid != null">
+        latestMessageId = #{record.latestmessageid,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -209,7 +232,9 @@
       jointime = #{record.jointime,jdbcType=TIMESTAMP},
       ready = #{record.ready,jdbcType=TINYINT},
       rtableid = #{record.rtableid,jdbcType=VARCHAR},
-      userid = #{record.userid,jdbcType=VARCHAR}
+      userid = #{record.userid,jdbcType=VARCHAR},
+      unreadMessage = #{record.unreadmessage,jdbcType=INTEGER},
+      latestMessageId = #{record.latestmessageid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -235,6 +260,12 @@
       <if test="userid != null">
         userid = #{userid,jdbcType=VARCHAR},
       </if>
+      <if test="unreadmessage != null">
+        unreadMessage = #{unreadmessage,jdbcType=INTEGER},
+      </if>
+      <if test="latestmessageid != null">
+        latestMessageId = #{latestmessageid,jdbcType=VARCHAR},
+      </if>
     </set>
     where rtablememberid = #{rtablememberid,jdbcType=VARCHAR}
   </update>
@@ -245,7 +276,9 @@
       jointime = #{jointime,jdbcType=TIMESTAMP},
       ready = #{ready,jdbcType=TINYINT},
       rtableid = #{rtableid,jdbcType=VARCHAR},
-      userid = #{userid,jdbcType=VARCHAR}
+      userid = #{userid,jdbcType=VARCHAR},
+      unreadMessage = #{unreadmessage,jdbcType=INTEGER},
+      latestMessageId = #{latestmessageid,jdbcType=VARCHAR}
     where rtablememberid = #{rtablememberid,jdbcType=VARCHAR}
   </update>
 </mapper>

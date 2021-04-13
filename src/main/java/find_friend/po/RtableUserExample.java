@@ -584,6 +584,136 @@ public class RtableUserExample {
             addCriterion("userid not between", value1, value2, "userid");
             return (Criteria) this;
         }
+
+        public Criteria andUnreadmessageIsNull() {
+            addCriterion("unreadMessage is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageIsNotNull() {
+            addCriterion("unreadMessage is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageEqualTo(Integer value) {
+            addCriterion("unreadMessage =", value, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageNotEqualTo(Integer value) {
+            addCriterion("unreadMessage <>", value, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageGreaterThan(Integer value) {
+            addCriterion("unreadMessage >", value, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageGreaterThanOrEqualTo(Integer value) {
+            addCriterion("unreadMessage >=", value, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageLessThan(Integer value) {
+            addCriterion("unreadMessage <", value, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageLessThanOrEqualTo(Integer value) {
+            addCriterion("unreadMessage <=", value, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageIn(List<Integer> values) {
+            addCriterion("unreadMessage in", values, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageNotIn(List<Integer> values) {
+            addCriterion("unreadMessage not in", values, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageBetween(Integer value1, Integer value2) {
+            addCriterion("unreadMessage between", value1, value2, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnreadmessageNotBetween(Integer value1, Integer value2) {
+            addCriterion("unreadMessage not between", value1, value2, "unreadmessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidIsNull() {
+            addCriterion("latestMessageId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidIsNotNull() {
+            addCriterion("latestMessageId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidEqualTo(String value) {
+            addCriterion("latestMessageId =", value, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidNotEqualTo(String value) {
+            addCriterion("latestMessageId <>", value, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidGreaterThan(String value) {
+            addCriterion("latestMessageId >", value, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidGreaterThanOrEqualTo(String value) {
+            addCriterion("latestMessageId >=", value, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidLessThan(String value) {
+            addCriterion("latestMessageId <", value, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidLessThanOrEqualTo(String value) {
+            addCriterion("latestMessageId <=", value, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidLike(String value) {
+            addCriterion("latestMessageId like", value, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidNotLike(String value) {
+            addCriterion("latestMessageId not like", value, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidIn(List<String> values) {
+            addCriterion("latestMessageId in", values, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidNotIn(List<String> values) {
+            addCriterion("latestMessageId not in", values, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidBetween(String value1, String value2) {
+            addCriterion("latestMessageId between", value1, value2, "latestmessageid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestmessageidNotBetween(String value1, String value2) {
+            addCriterion("latestMessageId not between", value1, value2, "latestmessageid");
+            return (Criteria) this;
+        }
     }
 
     /**
