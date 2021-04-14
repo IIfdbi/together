@@ -53,6 +53,7 @@ public class RtableController extends BaseController{
         RTable.setAvailable(Byte.parseByte("0"));
         RTable.setCreatetime(need.getCreatetime());
         RTable.setDdl(new Date(ddl));
+        RTable.setNowNumber(Short.parseShort("1"));
         RTable.setNeedid(needid);
         RTable.setDetail(need.getDetail());
         RTable.setSchool(need.getSchool());
@@ -96,6 +97,7 @@ public class RtableController extends BaseController{
         ru.setReady(Byte.parseByte("0"));
         ru.setRtableid(rTable.getRtableid());
         ru.setRtablememberid(UUID.randomUUID().toString().replaceAll("-", ""));
+        ru.setUnreadmessage(0);
         rtableUserRepository.save(ru);
         return new ResponseEntity<>(ResultModel.ok("加入圆桌成功"), HttpStatus.OK);
     }
