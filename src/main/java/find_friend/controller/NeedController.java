@@ -59,6 +59,8 @@ public class NeedController extends BaseController{
         need.setSubmitted(Byte.parseByte("0"));
         need.setCreatetime(new Date());
         need.setCreateuserid(getUserSession(request).getUserid());
+        need.setFirstTag(need.getFirstTag());
+        need.setSecondTag(need.getSecondTag());
         needRepository.save(need);
         return new ResponseEntity<>(ResultModel.ok("草稿保存成功"), HttpStatus.OK);
     }
