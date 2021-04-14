@@ -42,17 +42,17 @@ public class RtableController extends BaseController{
 
     //需求转换圆桌
     @PostMapping(value = "/create")
-    public ResponseEntity<ResultModel> createRTable(String needid,String RTablename,HttpServletRequest request){
+    public ResponseEntity<ResultModel> createRTable(String needid,String RTablename,String max,String ddl,HttpServletRequest request){
         Need need = needRepository.findByNeedid(needid);
         if(need == null){
             return new ResponseEntity<>(ResultModel.error(HttpStatus.BAD_REQUEST,"非法的需求"), HttpStatus.BAD_REQUEST);
         }
         Rtable RTable = new Rtable();
         RTable.setRtableid(UUID.randomUUID().toString().replaceAll("-", ""));
-        RTable.setMaxNumber(need.getMaxcount());
+        RTable.setMaxNumber(Short.parseShort(max));
         RTable.setAvailable(Byte.parseByte("0"));
         RTable.setCreatetime(need.getCreatetime());
-        RTable.setDdl(need.getDdl());
+        RTable.setDdl(new Date(ddl));
         RTable.setNeedid(needid);
         RTable.setDetail(need.getDetail());
         RTable.setSchool(need.getSchool());
@@ -97,7 +97,7 @@ public class RtableController extends BaseController{
         ru.setRtableid(rTable.getRtableid());
         ru.setRtablememberid(UUID.randomUUID().toString().replaceAll("-", ""));
         rtableUserRepository.save(ru);
-        return new ResponseEntity<>(ResultModel.ok("圆桌创建成功"), HttpStatus.OK);
+        return new ResponseEntity<>(ResultModel.ok("加入圆桌成功"), HttpStatus.OK);
     }
 
     //获取用户创建的所有圆桌
@@ -179,6 +179,23 @@ public class RtableController extends BaseController{
             RTables = rtableRepository.search(keyWord,school,pageable);
         }
         return RTables;
+    }
+
+    //查询是否准备
+    @GetMapping(value = "/isReady")
+    public boolean isReady(HttpServletRequest request,String rtableid){
+        List<RtableUser> RTables = rtableUserRepository.findByUserid(getUserSession(request).getUserid());
+        for(int i=0;i<RTables.size();i++){
+            if(RTables.get(i).getRtableid().equals(rtableid)){
+                if(RTables.get(i).getReady().intValue() == 0){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     //用户在圆桌准备
