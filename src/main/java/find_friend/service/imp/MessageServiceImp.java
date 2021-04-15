@@ -46,7 +46,9 @@ public class MessageServiceImp implements MessageService {
             response.setData(false);
             return response.fail("此用户不是此圆桌的人");
         }
-
+        if(message.getType()==null){
+            message.setType(0);
+        }
         message.setCreatetime(new Date());
         int ram= new Random().nextInt();
         message.setMessageid(MD5Util.getMD5(ram+message.getUserid()+message.getContent()));
